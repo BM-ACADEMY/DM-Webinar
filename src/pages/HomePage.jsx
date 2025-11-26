@@ -9,7 +9,7 @@ import CourseSection from "../sections/Coursesection";
 import HostSection from "../sections/Hostsection";
 import GallerySection from "../sections/GallerySection";
 import AfterRegistrationSection from "../sections/AfterRegistrationSection";
-import FAQSection from "../sections/FaqSection";
+import FAQSection from "../sections/FAQSection";
 
 
 export default function HomePage() {
