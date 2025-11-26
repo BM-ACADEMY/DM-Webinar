@@ -20,16 +20,21 @@ export default function GallerySection() {
                 text3="A glimpse into our live sessions, real projects, internships, and student success stories."
             />
 
-            {/* ⭐ Smooth Expand Gallery */}
-            <div className="
-                flex 
-                gap-4 
-                mt-10 
-                mx-auto 
-                max-w-6xl 
-                overflow-hidden
-                h-[260px] sm:h-[330px]
-            ">
+            {/* ⭐ RESPONSIVE GALLERY */}
+            <div
+                className="
+                    mt-10 
+                    mx-auto 
+                    max-w-6xl 
+                    gap-4 
+                    flex 
+                    flex-col 
+                    sm:flex-row 
+                    sm:flex-wrap
+                    lg:flex-nowrap
+                    overflow-hidden
+                "
+            >
                 {images.map((img, i) => (
                     <motion.div
                         key={i}
@@ -37,12 +42,15 @@ export default function GallerySection() {
                             relative 
                             overflow-hidden 
                             rounded-xl
-                            flex-1 
-                            min-w-[120px]
-                            transition-all 
-                            duration-500
+                            bg-black
+                            w-full
+                            h-[250px]
+                            sm:w-[48%] sm:h-[300px]
+                            lg:flex-1 lg:h-[330px]
+                            lg:min-w-[140px]
+                            transition-all duration-500
                             group
-                            hover:flex-[3]
+                            lg:hover:flex-[3]
                         "
                     >
                         <img
@@ -52,7 +60,7 @@ export default function GallerySection() {
                                 w-full 
                                 h-full 
                                 object-cover 
-                                transition-all 
+                                transition-transform 
                                 duration-500 
                                 group-hover:scale-110
                             "
@@ -61,7 +69,6 @@ export default function GallerySection() {
                 ))}
             </div>
 
-            {/* Font */}
             <style>{`
                 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
                 * { font-family: 'Poppins', sans-serif; }
