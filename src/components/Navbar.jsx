@@ -2,31 +2,31 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { navlinks } from "../data/navlinks";
-import { Link } from "react-router-dom";
-import logo from "../assets/Bm Academy logo .png"; // <-- your logo
+import logo from "../assets/Bm Academy logo .png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
+      {/* TOP NAV */}
       <motion.nav
-        className="fixed top-0 z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-32 backdrop-blur"
+        className="fixed top-0 z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-32 backdrop-blur bg-black/20"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ type: "spring", stiffness: 250, damping: 70, mass: 1 }}
+        transition={{ type: "spring", stiffness: 250, damping: 70 }}
       >
-        {/* Updated Logo */}
-        <Link to="/">
+        {/* LOGO */}
+        <a href="#top">
           <img
             src={logo}
             alt="BM Academy Logo"
             className="h-14 md:h-16 lg:h-16 w-auto object-contain"
           />
-        </Link>
+        </a>
 
-        <div className="hidden md:flex items-center gap-8 transition duration-500">
+        {/* DESKTOP NAV LINKS */}
+        <div className="hidden md:flex items-center gap-8">
           {navlinks.map((link) => (
             <a
               key={link.name}
@@ -38,38 +38,58 @@ export default function Navbar() {
           ))}
         </div>
 
+        {/* DESKTOP REGISTER BUTTON */}
         <a
-  href="https://wa.me/919944940051?text=Hi%2C%20I%20want%20to%20start%20the%20free%20trial%20and%20know%20more%20about%20the%20AI%20%2B%20Digital%20Marketing%20course"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="hidden md:block px-6 py-2.5 bg-yellow-400 hover:bg-yellow-700 active:scale-95 transition-all rounded-full"
->
-  Register
-</a>
+          href="#contact"
+          className="hidden md:block px-6 py-2.5 bg-yellow-400 hover:bg-yellow-600 active:scale-95 transition-all rounded-full text-black font-medium"
+        >
+          Register
+        </a>
 
-
+        {/* MOBILE MENU BUTTON */}
         <button onClick={() => setIsOpen(true)} className="md:hidden">
-          <MenuIcon size={26} className="active:scale-90 transition" />
+          <MenuIcon size={28} className="active:scale-90 transition" />
         </button>
       </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       <div
-        className={`fixed inset-0 z-100 bg-black/40 backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-400 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`
+          fixed inset-0 z-50 
+          bg-black/60 backdrop-blur 
+          flex flex-col items-center justify-center 
+          text-xl gap-8 md:hidden
+          transform transition-transform duration-500
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
       >
+        {/* Mobile Navigation Links */}
         {navlinks.map((link) => (
-          <Link key={link.name} to={link.href} onClick={() => setIsOpen(false)}>
+          <a
+            key={link.name}
+            href={link.href}
+            onClick={() => setIsOpen(false)}
+            className="text-white hover:text-yellow-400 transition"
+          >
             {link.name}
-          </Link>
+          </a>
         ))}
 
+        {/* MOBILE REGISTER BUTTON */}
+        <a
+          href="#contact"
+          onClick={() => setIsOpen(false)}
+          className="px-6 py-2.5 bg-yellow-400 hover:bg-yellow-600 rounded-full text-black font-semibold"
+        >
+          Register
+        </a>
+
+        {/* Close Button */}
         <button
           onClick={() => setIsOpen(false)}
-          className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-pink-600 hover:bg-pink-700 transition text-white rounded-md flex"
+          className="mt-6 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md p-2"
         >
-          <XIcon />
+          <XIcon size={26} />
         </button>
       </div>
     </>
