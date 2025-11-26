@@ -2,6 +2,7 @@ import { footerData } from "../data/footer";
 import { DribbbleIcon, LinkedinIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+import logo from "../assets/Bm Academy logo .png"
 
 export default function Footer() {
     return (
@@ -12,16 +13,17 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 280, damping: 70, mass: 1 }}
             >
-                <img className="size-8 aspect-square" src="/assets/footer-logo.svg" alt="footer logo" />
+                <img className="size-8 aspect-square" src={logo} alt="footer logo" />
                 {footerData.map((section, index) => (
                     <div key={index}>
                         <p className="text-slate-100 font-semibold">{section.title}</p>
                         <ul className="mt-2 space-y-2">
                             {section.links.map((link, index) => (
                                 <li key={index}>
-                                    <Link href={link.href} className="hover:text-yellow-600 transition">
-                                        {link.name}
-                                    </Link>
+                                    <Link to={link.href} className="hover:text-yellow-600 transition">
+    {link.name}
+</Link>
+
                                 </li>
                             ))}
                         </ul>
