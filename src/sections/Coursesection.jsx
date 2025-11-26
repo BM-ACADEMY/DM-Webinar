@@ -6,9 +6,11 @@ import React from "react";
 export default function CourseSection() {
     return (
         <div id="course" className="px-4 md:px-16 lg:px-24 xl:px-32 mt-20">
+            <div id="webinar" className="mt-20"></div>
 
             {/* Section Heading */}
             <SectionTitle
+            
                 text1="Course Overview"
                 text2="About the AI + Digital Marketing Integrated Course (BM Academy)"
                 text3="Our Digital Marketing Pro: AI Integrated Course is a 90-day practical program designed to make you job-ready with real projects, AI tools, and placement support."

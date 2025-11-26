@@ -22,7 +22,7 @@ export default function HeroSection() {
                 transition={{ type: 'spring', stiffness: 240, damping: 70 }}
             >
                 Launch Your Digital Marketing Career{" "}
-                <span className="move-gradient px-3 rounded-xl">with AI in 90 Days</span>
+                <span className="move-gradient px-3 rounded-xl">with AI in 90 Minutes</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -52,8 +52,8 @@ export default function HeroSection() {
 
 
                 <div className="space-y-2 ml-2">
-                    <p className="flex items-center gap-2"><Calendar size={18}/> 6 December, 7:00 PM – 8:30 PM</p>
-                    <p className="flex items-center gap-2"><Calendar size={18}/> 4 January, 7:00 PM – 8:30 PM</p>
+                    <p className="flex items-center gap-2"><Calendar size={18}/> 6 December 2025, 7:00 PM – 8:30 PM</p>
+                    <p className="flex items-center gap-2"><Calendar size={18}/> 4 January 2026, 7:00 PM – 8:30 PM</p>
                 </div>
 
                 <p className="flex items-center gap-2 mt-3">
@@ -81,9 +81,13 @@ export default function HeroSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, type: 'spring' }}
             >
-                <button className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full px-10 py-3 text-lg font-semibold">
-                    Register for the Free AI + Digital Marketing Webinar
-                </button>
+                <a
+  href="#contact"
+  className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full px-10 py-3 text-lg font-semibold inline-block"
+>
+  Register for the Free AI + Digital Marketing Webinar
+</a>
+
 
                 {/* Micro Text */}
                 <p className="text-sm text-slate-300 text-center mt-3">

@@ -4,6 +4,7 @@ import { useState } from "react";
 import SectionTitle from "../components/SectionTitle";
 
 export default function RegistrationSection() {
+    
 
     const [form, setForm] = useState({
         name: "",

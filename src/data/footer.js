@@ -3,7 +3,7 @@ export const footerData = [
         title: "",
         links: [
             { name: "Home", href: "#" },
-            { name: "Webinar", href: "#features" },
+            { name: "Webinar", href: "#webinar" },
             { name: "Contact", href: "#contact" },
         ]
     },

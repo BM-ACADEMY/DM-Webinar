@@ -4,7 +4,7 @@ export default function SectionTitle({ text1, text2, text3, Icon }) {
     return (
         <>
             <motion.div
-                className="flex items-center justify-center gap-2 font-medium text-yellow-600 mt-28 px-10 py-2 rounded-full bg-yellow-950/70 border border-yellow-800 w-max mx-auto"
+                 className="flex items-center justify-center gap-2 font-medium text-yellow-600 mt-28 px-10 py-2 rounded-full bg-yellow-950/70 border border-yellow-800 w-max mx-auto"
                 initial={{ y: 120, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}

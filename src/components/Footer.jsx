@@ -1,5 +1,5 @@
 import { footerData } from "../data/footer";
-import { DribbbleIcon, LinkedinIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
+import { DribbbleIcon, InstagramIcon, LinkedinIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import logo from "../assets/Bm Academy logo .png"
@@ -49,6 +49,9 @@ export default function Footer() {
                     </a>
                     <a href="https://www.youtube.com/@bmacademypondy" target="_blank" rel="noreferrer">
                         <YoutubeIcon className="size-6 hover:text-yellow-500" />
+                    </a>
+                    <a href="https://www.instagram.com/bmacademypondy/?hl=en" target="_blank" rel="noreferrer">
+                        <InstagramIcon className="size-6 hover:text-yellow-500" />
                     </a>
                 </div>
                 <p className="mt-3 text-center">&copy; {new Date().getFullYear()} <a href="https://bmtechx.in/">BM Techx</a></p>

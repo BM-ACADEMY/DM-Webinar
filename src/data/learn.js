@@ -15,7 +15,7 @@ export const learnData = [
     },
     {
         icon: AiOutlineBook,
-        title: "Digital Marketing Skills for 2025",
+        title: "Digital Marketing Skills for 2026",
         description: "Learn the top skills companies are hiring for right now."
     },
     {
