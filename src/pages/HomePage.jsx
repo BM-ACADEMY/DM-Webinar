@@ -11,6 +11,7 @@ import GallerySection from "../sections/GallerySection";
 import AfterRegistrationSection from "../sections/AfterRegistrationSection";
 import FAQSection from "../sections/FaqSection";
 
+
 export default function HomePage() {
     return (
         <>
