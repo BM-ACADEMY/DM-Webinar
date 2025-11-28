@@ -119,11 +119,14 @@
 import { Calendar, Globe, Languages, Gift, CheckIcon } from "lucide-react";
 import { motion } from "motion/react";
 import { AiOutlineCalendar } from "react-icons/ai";
+import ConfettiEffect from "../components/ConfettiEffect";
+
+
 
 export default function HeroSection() {
     return (
-        <div className="relative flex flex-col items-center justify-center px-4 md:px-16 lg:px-24 xl:px-32">
-
+        <div className="relative flex flex-col items-center justify-center px-4 md:px-16 lg:px-24 xl:px-32 overflow-hidden">
+           <ConfettiEffect />
             {/* Background Glow */}
             <div className="absolute top-20 -z-10 left-1/2 -translate-x-1/2 w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-yellow-600 blur-[200px] opacity-30"></div>
 
