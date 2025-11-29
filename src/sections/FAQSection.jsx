@@ -43,7 +43,7 @@ export default function FAQSection() {
 
             {/* Section Title */}
             <SectionTitle
-                text1="Frequently Asked Questions"
+                text1="FAQ"
                 text2="Frequently Asked Questions"
                 text3="Answers to the most common questions about our free webinar."
             />

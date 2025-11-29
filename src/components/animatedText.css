@@ -1,0 +1,15 @@
+.animated-word {
+  display: inline-flex;
+  gap: 2px; /* ensures spacing between letters */
+}
+
+.animated-letter {
+  display: inline-block;
+  transition: transform 0.25s ease, color 0.25s ease;
+  white-space: pre; /* preserves spaces */
+}
+
+.animated-letter:hover {
+  transform: translateY(-6px) rotate(5deg) scale(1.25);
+  color: #ffd700;
+}

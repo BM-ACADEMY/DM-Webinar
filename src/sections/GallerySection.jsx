@@ -3,8 +3,8 @@ import { motion } from "motion/react";
 
 import img1 from "../assets/DM/IMG-20251031-WA0004.jpg";
 import img2 from "../assets/DM/IMG-20251031-WA0005.jpg";
-import img3 from "../assets/DM/IMG20251004133307.jpg";
-import img4 from "../assets/DM/IMG20251004133357.jpg";
+import img3 from "../assets/DM/DM_1.jpg";
+import img4 from "../assets/DM/DM_2.jpg";
 import img5 from "../assets/DM/IMG-20251031-WA0003.jpg";
 import img6 from "../assets/DM/IMG-20251031-WA0004.jpg";
 

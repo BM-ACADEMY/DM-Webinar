@@ -2,7 +2,7 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { navlinks } from "../data/navlinks";
-import logo from "../assets/Bm Academy logo .png";
+import logo from "../assets/BM_ACADEMY-.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
