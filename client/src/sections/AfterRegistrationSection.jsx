@@ -38,7 +38,7 @@ export default function AfterRegistrationSection() {
     ];
 
     return (
-        <div id="after-register" className="px-4 md:px-16 lg:px-24 xl:px-32 mt-24">
+        <div id="after-register" className="px-4 md:px-16 lg:px-24 xl:px-32 py-0 w-full">
 
             {/* Section Heading */}
             <SectionTitle
@@ -47,8 +47,8 @@ export default function AfterRegistrationSection() {
                 text3="Everything is designed to give you clarity, reminders, and a smooth webinar experience."
             />
 
-            {/* Steps */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 max-w-6xl mx-auto">
+            {/* Cards Container - Using Flex to Center Everything */}
+            <div className="flex flex-wrap justify-center gap-8 mt-16 max-w-7xl mx-auto">
                 {steps.map((item, index) => {
                     const Icon = item.icon;
 
@@ -57,23 +57,28 @@ export default function AfterRegistrationSection() {
                             key={index}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            whileHover={{ y: -10, scale: 1.02 }} 
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1, type: "spring", stiffness: 220 }}
-                            className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl
-                                       hover:border-yellow-500 hover:shadow-2xl transition cursor-pointer"
+                            transition={{ duration: 0.3 }}
+                            className="w-full sm:w-80 lg:w-96 p-8 rounded-3xl 
+                                       bg-white/5 border border-white/10 backdrop-blur-xl
+                                       flex flex-col items-center text-center
+                                       hover:border-yellow-500 hover:bg-white/10
+                                       hover:shadow-[0_0_30px_-5px_rgba(234,179,8,0.4)]
+                                       transition-all duration-300 cursor-pointer group"
                         >
-                            {/* Icon */}
-                            <div className="mb-4">
-                                <Icon className="text-yellow-400 text-4xl" />
+                            {/* Icon with Glow Background */}
+                            <div className="mb-6 p-4 rounded-full bg-white/5 group-hover:bg-yellow-500/20 transition-colors duration-300">
+                                <Icon className="text-yellow-400 text-5xl drop-shadow-lg" />
                             </div>
 
                             {/* Title */}
-                            <h3 className="text-lg font-semibold text-slate-100 mb-2">
+                            <h3 className="text-xl font-semibold text-slate-100 mb-3 group-hover:text-yellow-400 transition-colors">
                                 {item.title}
                             </h3>
 
                             {/* Description */}
-                            <p className="text-slate-300 text-sm leading-relaxed">
+                            <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-200 transition-colors">
                                 {item.description}
                             </p>
                         </motion.div>

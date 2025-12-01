@@ -30,7 +30,7 @@ export default function Footer() {
 
                 {/* COLUMN 2 — QUICK LINKS (FROM footerData) */}
                 <div>
-                    <p className="text-lg font-semibold text-white">Quick Links</p>
+                    <p className="text-lg font-semibold text-yellow-500">Quick Links</p>
                     <ul className="mt-3 space-y-2 text-sm">
                         {footerData[0].links.map((link, i) => (
                             <li key={i}>
@@ -44,7 +44,7 @@ export default function Footer() {
 
                 {/* COLUMN 3 — SOCIAL MEDIA */}
                 <div>
-                    <p className="text-lg font-semibold text-white">Social Media</p>
+                    <p className="text-lg font-semibold text-yellow-500">Social Media</p>
 
                     <div className="flex flex-col gap-3 mt-4 text-sm">
 
@@ -103,9 +103,18 @@ export default function Footer() {
             </div>
 
             {/* COPYRIGHT */}
-            <div className="w-full border-t border-gray-700 mt-10 pt-5 text-center text-xs text-gray-500">
-                © {new Date().getFullYear()} BM Techx — All Rights Reserved.
-            </div>
+            <div className="w-full border-t border-gray-700 mt-10 pt-5 text-center text-sm text-gray-200">
+    © 2025 <a 
+            href="https://bmtechx.in" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-yellow-500 hover:text-yellow-400 transition"
+        >
+        BMTechx.in
+        </a> 
+        — All Rights Reserved.
+</div>
+
         </footer>
     );
 }

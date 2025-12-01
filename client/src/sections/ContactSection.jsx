@@ -1,10 +1,38 @@
 import { ArrowRightIcon, MailIcon, UserIcon, PhoneIcon, MapPinIcon, CalendarIcon } from "lucide-react";
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast"; 
+import Confetti from "react-confetti"; 
 import SectionTitle from "../components/SectionTitle";
 
+// Helper hook to get window size for Confetti
+function useWindowSize() {
+    const [windowSize, setWindowSize] = useState({
+        width: undefined,
+        height: undefined,
+    });
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowSize({
+                // Use clientWidth to exclude scrollbar width and prevent X overflow
+                width: document.documentElement.clientWidth,
+                height: window.innerHeight,
+            });
+        }
+        window.addEventListener("resize", handleResize);
+        handleResize(); // Call immediate
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return windowSize;
+}
+
 export default function RegistrationSection() {
+    const { width, height } = useWindowSize(); 
+    const [showConfetti, setShowConfetti] = useState(false); 
+
     const [form, setForm] = useState({
         name: "",
         phone: "",
@@ -15,7 +43,6 @@ export default function RegistrationSection() {
         source: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitMessage, setSubmitMessage] = useState("");
 
     const handleChange = (field, value) => {
         setForm({ ...form, [field]: value });
@@ -23,80 +50,71 @@ export default function RegistrationSection() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitMessage("");
 
-        const apiUrl = import.meta.env.VITE_BASE_URL; 
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbz8Jt6ycHuDD8IhxS7WbKXjDFppBHqwC1mgXNM29bnoZigCWE5c12zz8KJehKYSvVrIug/exec"; // Update if redeploy changes it
+        // Validation: Phone Number
+        if (form.phone.length !== 10) {
+            toast.error("Please enter a valid 10-digit phone number.");
+            return;
+        }
+
+        setIsSubmitting(true);
+        const loadingToast = toast.loading("Reserving your seat...");
+
+        const apiUrl = import.meta.env.VITE_BASE_URL;
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbz8Jt6ycHuDD8IhxS7WbKXjDFppBHqwC1mgXNM29bnoZigCWE5c12zz8KJehKYSvVrIug/exec";
 
         let sheetSuccess = false;
         let emailSuccess = false;
-        let errors = [];
 
         try {
             const formData = new URLSearchParams(form);
 
+            // 1. Submit to Google Sheet
             try {
                 const sheetResponse = await axios.post(scriptUrl, formData, {
                     timeout: 15000,
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 });
-                if (sheetResponse.status === 200) {
-                    sheetSuccess = true;
-                    console.log("Sheet submission successful:", sheetResponse.data);
-                }
-            } catch (sheetError) {
-                console.error("Sheet submission error details:", {
-                    message: sheetError.message,
-                    status: sheetError.response?.status,
-                    data: sheetError.response?.data,
-                    code: sheetError.code
-                });
-                if (sheetError.code === 'ECONNABORTED') {
-                    errors.push("Sheet timed out—check internet.");
-                } else if (sheetError.response?.status === 403) {
-                    errors.push("403 Forbidden: Redeploy Apps Script as 'Web app' with 'Execute as: Me' and 'Who has access: Anyone'. Test with curl.");
-                } else if (sheetError.response?.status === 405) {
-                    errors.push("405 Method Not Allowed: Ensure doPost(e) is defined.");
-                } else {
-                    errors.push(`Sheet failed: ${sheetError.response?.data?.message || sheetError.message}`);
-                }
+                if (sheetResponse.status === 200) sheetSuccess = true;
+            } catch (error) {
+                console.error("Sheet Error:", error);
             }
 
+            // 2. Submit Email
             try {
                 const emailResponse = await axios.post(`${apiUrl}/mail/send-email`, form, { timeout: 15000 });
-                if (emailResponse.status === 200) {
-                    emailSuccess = true;
-                    console.log("Email submission successful:", emailResponse.data);
-                }
-            } catch (emailError) {
-                console.error("Email submission error:", emailError);
-                if (emailError.code === 'ECONNABORTED') {
-                    errors.push("Email timed out—check backend.");
-                } else if (!apiUrl || apiUrl.includes('localhost')) {
-                    errors.push("Email API not set—add VITE_BASE_URL to .env.");
-                } else {
-                    errors.push(`Email failed: ${emailError.response?.data?.message || emailError.message}`);
-                }
+                if (emailResponse.status === 200) emailSuccess = true;
+            } catch (error) {
+                console.error("Email Error:", error);
             }
 
-            // Set message based on results
+            // Handle Results
+            toast.dismiss(loadingToast); 
+
             if (sheetSuccess && emailSuccess) {
-                setSubmitMessage("Registration successful! Email sent & data saved to sheet.");
+                toast.success("Registration Successful!");
+                triggerConfetti();
                 resetForm();
-            } else if (sheetSuccess) {
-                setSubmitMessage("Data saved to sheet, but email failed. Check console.");
-            } else if (emailSuccess) {
-                setSubmitMessage("Email sent, but sheet save failed. Check console & redeploy script.");
+            } else if (sheetSuccess || emailSuccess) {
+                toast.success("Registration Saved.");
+                triggerConfetti();
+                resetForm();
             } else {
-                setSubmitMessage(`Submission failed: ${errors.join('; ')}\nOpen F12 > Console/Network for details.`);
+                toast.error("Submission failed. Please check your connection.");
             }
+
         } catch (error) {
-            console.error("Unexpected error:", error);
-            setSubmitMessage(`Unexpected issue: ${error.message}. Refresh & retry.`);
+            toast.dismiss(loadingToast);
+            toast.error(`Unexpected error: ${error.message}`);
         } finally {
             setIsSubmitting(false);
         }
+    };
+
+    const triggerConfetti = () => {
+        setShowConfetti(true);
+        // Stop confetti after 6 seconds
+        setTimeout(() => setShowConfetti(false), 6000);
     };
 
     const resetForm = () => {
@@ -112,7 +130,25 @@ export default function RegistrationSection() {
     };
 
     return (
-        <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 mt-24" id="contact">
+        <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 pt-0 relative" id="contact">
+            
+            {/* Toast Container */}
+            <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
+
+            {/* Confetti Overlay - Fixed to screen, no overflow, clicks pass through */}
+            {showConfetti && (
+                <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
+                    <Confetti
+                        width={width}
+                        height={height}
+                        recycle={false}
+                        numberOfPieces={500}
+                        gravity={0.2}
+                        style={{ position: 'fixed', top: 0, left: 0 }}
+                    />
+                </div>
+            )}
+
             <SectionTitle
                 text1="Webinar Details and Registration Form"
                 text2="Save Your Seat – Free Webinar Registration"
@@ -134,20 +170,25 @@ export default function RegistrationSection() {
 
                 <InputGlass
                     label="WhatsApp Number *"
-                    placeholder="Enter your WhatsApp number"
+                    placeholder="Enter 10-digit number"
                     Icon={PhoneIcon}
-                    onChange={(v) => handleChange("phone", v)}
                     value={form.phone}
                     required
+                    onChange={(v) => {
+                        const numericValue = v.replace(/\D/g, '').slice(0, 10);
+                        handleChange("phone", numericValue);
+                    }}
+                    type="tel"
                 />
 
                 <InputGlass
-                    label="Email (Optional)"
+                    label="Email *"
                     placeholder="Enter your email"
                     Icon={MailIcon}
                     type="email"
                     onChange={(v) => handleChange("email", v)}
                     value={form.email}
+                    required
                 />
 
                 <InputGlass
@@ -197,13 +238,7 @@ export default function RegistrationSection() {
                     <ArrowRightIcon className="size-5" />
                 </motion.button>
 
-                {submitMessage && (
-                    <p className={`sm:col-span-2 mt-2 text-center sm:text-left ${submitMessage.includes("successful") ? "text-green-400" : "text-red-400"} whitespace-pre-wrap text-sm`}>
-                        {submitMessage}
-                    </p>
-                )}
-
-                <p className="text-xs sm:text-sm text-slate-400 sm:col-span-2 mt-2 text-center sm:text-left">
+                <p className="pl-10 text-xs sm:text-sm text-slate-400 sm:col-span-2 mt-2 text-center sm:text-left">
                     We respect your privacy. Your details will only be used for webinar updates and course information.
                 </p>
             </form>
@@ -253,11 +288,12 @@ function SelectGlass({ label, options, Icon, onChange, value, required = false }
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     required={required}
-                    className="w-full p-3 bg-transparent outline-none text-slate-100 text-sm sm:text-base"
+                    style={{ colorScheme: "dark" }}
+                    className="w-full p-3 bg-transparent outline-none text-slate-100 text-sm sm:text-base cursor-pointer"
                 >
-                    <option value="">Select an option</option>
+                    <option value="" className="text-slate-400 bg-neutral-900">Select an option</option>
                     {options.map((opt, i) => (
-                        <option key={i} className="bg-slate-900 text-white" value={opt}>
+                        <option key={i} className="bg-neutral-900 text-white" value={opt}>
                             {opt}
                         </option>
                     ))}

@@ -1,32 +1,37 @@
-import { useEffect, useState, useRef } from "react";
-import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
+import { 
+  motion, 
+  useMotionValue, 
+  useTransform, 
+  animate, 
+  useInView 
+} from "motion/react";
 import { GraduationCap, Briefcase, Star } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
 
-// Counter animation
-function Counter({ target, duration = 2000 }) {
-    const [count, setCount] = useState(0);
+// 1. Improved Counter Component
+// Uses Framer Motion to animate the number only when visible
+function AnimatedCounter({ from = 0, to, duration = 2.5 }) {
+    const count = useMotionValue(from);
+    const rounded = useTransform(count, (latest) => Math.round(latest));
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     useEffect(() => {
-        let start = 0;
-        const increment = target / (duration / 16);
+        if (isInView) {
+            const controls = animate(count, to, { 
+                duration: duration,
+                ease: "easeOut" 
+            });
+            return controls.stop;
+        }
+    }, [count, to, isInView, duration]);
 
-        const counter = setInterval(() => {
-            start += increment;
-            if (start >= target) {
-                start = target;
-                clearInterval(counter);
-            }
-            setCount(Math.floor(start));
-        }, 16);
-
-        return () => clearInterval(counter);
-    }, [target, duration]);
-
-    return <span>{count}</span>;
+    return <motion.span ref={ref}>{rounded}</motion.span>;
 }
 
-// 3D Hover card wrapper
+// 2. Refined 3D Tilt Card
+// Smoother interaction and better preservation of layout
 function TiltCard({ children }) {
     const ref = useRef(null);
 
@@ -36,14 +41,15 @@ function TiltCard({ children }) {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        const tiltX = ((y - rect.height / 2) / rect.height) * 15;
-        const tiltY = ((x - rect.width / 2) / rect.width) * -15;
+        // Reduced tilt intensity for a more premium feel
+        const tiltX = ((y - rect.height / 2) / rect.height) * 10;
+        const tiltY = ((x - rect.width / 2) / rect.width) * -10;
 
-        card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.04)`;
+        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
     };
 
     const handleLeave = () => {
-        ref.current.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+        ref.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
     };
 
     return (
@@ -51,7 +57,8 @@ function TiltCard({ children }) {
             ref={ref}
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
-            className="transition-transform duration-300 cursor-pointer"
+            className="transition-transform duration-500 ease-out cursor-pointer h-full"
+            style={{ transformStyle: "preserve-3d" }}
         >
             {children}
         </div>
@@ -60,114 +67,109 @@ function TiltCard({ children }) {
 
 export default function Achievements() {
     return (
-        <section className="w-full pt-10 pb-24 bg-black text-white relative overflow-hidden">
+        <section className="w-full bg-neutral-950 text-white relative overflow-hidden">
+            
+            {/* Background Effects (Grid & Glows) */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-yellow-500/10 blur-[100px] rounded-full" />
 
-            {/* Heading same as Host section */}
-            <SectionTitle
-                text1="Our Achievements"
-                text2=""
-                text3=""
-            />
+            {/* Content Wrapper */}
+            <div className="relative z-10">
+                <SectionTitle
+                    text1="Our Achievementss"
+                />
 
-            <div className="relative max-w-6xl mx-auto px-6 md:px-12">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16">
+                    
+                    {/* Cards Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
 
-                {/* Cards */}
-                <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
+                        {/* Card 1: Students */}
+                        <TiltCard>
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                                className="h-full p-8 rounded-3xl backdrop-blur-md bg-neutral-900/50
+                                           border border-white/10 shadow-xl
+                                           hover:border-yellow-500/30 hover:shadow-[0_0_30px_-5px_rgba(234,179,8,0.3)]
+                                           group transition-all duration-300 flex flex-col items-center justify-center"
+                            >
+                                <div className="p-4 rounded-full bg-yellow-500/10 mb-6 group-hover:bg-yellow-500/20 transition-colors">
+                                    <GraduationCap className="size-10 text-yellow-500" />
+                                </div>
+                                <h3 className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-white to-neutral-400 bg-clip-text text-transparent mb-2">
+                                    <AnimatedCounter to={800} />+
+                                </h3>
+                                <p className="text-lg font-medium text-yellow-500/90 tracking-wide uppercase text-sm">
+                                    Students Trained
+                                </p>
+                            </motion.div>
+                        </TiltCard>
 
-                    {/* Card 1 */}
-                    <TiltCard>
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            animate={{ y: [0, -12, 0] }}
-                            transition={{
-                                duration: 5,
-                                ease: "easeInOut",
-                            }}
-                            className="p-8 rounded-2xl backdrop-blur-lg bg-white/10
-                                       border border-white/20 shadow-2xl
-                                       hover:border-yellow-500/70 hover:shadow-yellow-500/40
-                                       transition-all duration-300"
-                        >
-                            <GraduationCap className="size-14 text-yellow-500 mx-auto mb-4 drop-shadow-lg" />
-                            <p className="text-6xl font-bold text-yellow-500">
-                                <Counter target={800} />+
-                            </p>
-                            <p className="mt-4 text-lg tracking-wide text-gray-200">
-                                Students Trained
-                            </p>
-                        </motion.div>
-                    </TiltCard>
+                        {/* Card 2: Placements */}
+                        <TiltCard>
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.1 }}
+                                className="h-full p-8 rounded-3xl backdrop-blur-md bg-neutral-900/50
+                                           border border-white/10 shadow-xl
+                                           hover:border-yellow-500/30 hover:shadow-[0_0_30px_-5px_rgba(234,179,8,0.3)]
+                                           group transition-all duration-300 flex flex-col items-center justify-center"
+                            >
+                                <div className="p-4 rounded-full bg-yellow-500/10 mb-6 group-hover:bg-yellow-500/20 transition-colors">
+                                    <Briefcase className="size-10 text-yellow-500" />
+                                </div>
+                                <h3 className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-white to-neutral-400 bg-clip-text text-transparent mb-2">
+                                    <AnimatedCounter to={400} />+
+                                </h3>
+                                <p className="text-lg font-medium text-yellow-500/90 tracking-wide uppercase text-sm">
+                                    Career Transitions
+                                </p>
+                            </motion.div>
+                        </TiltCard>
 
-                    {/* Card 2 */}
-                    <TiltCard>
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            animate={{ y: [0, -12, 0] }}
-                            transition={{
-                                duration: 5,
-                                ease: "easeInOut",
-                                delay: 0.2,
-                            }}
-                            className="p-8 rounded-2xl backdrop-blur-lg bg-white/10
-                                       border border-white/20 shadow-2xl
-                                       hover:border-yellow-500/70 hover:shadow-yellow-500/40
-                                       transition-all duration-300"
-                        >
-                            <Briefcase className="size-14 text-yellow-500 mx-auto mb-4 drop-shadow-lg" />
-                            <p className="text-6xl font-bold text-yellow-500">
-                                <Counter target={400} />+
-                            </p>
-                            <p className="mt-4 text-lg tracking-wide text-gray-200">
-                                Students Placed
-                            </p>
-                        </motion.div>
-                    </TiltCard>
+                        {/* Card 3: Experience */}
+                        <TiltCard>
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                                className="h-full p-8 rounded-3xl backdrop-blur-md bg-neutral-900/50
+                                           border border-white/10 shadow-xl
+                                           hover:border-yellow-500/30 hover:shadow-[0_0_30px_-5px_rgba(234,179,8,0.3)]
+                                           group transition-all duration-300 flex flex-col items-center justify-center"
+                            >
+                                <div className="p-4 rounded-full bg-yellow-500/10 mb-6 group-hover:bg-yellow-500/20 transition-colors">
+                                    <Star className="size-10 text-yellow-500" />
+                                </div>
+                                <h3 className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-white to-neutral-400 bg-clip-text text-transparent mb-2">
+                                    <AnimatedCounter to={5} />+
+                                </h3>
+                                <p className="text-lg font-medium text-yellow-500/90 tracking-wide uppercase text-sm">
+                                    Years Excellence
+                                </p>
+                            </motion.div>
+                        </TiltCard>
+                    </div>
 
-                    {/* Card 3 */}
-                    <TiltCard>
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            animate={{ y: [0, -12, 0] }}
-                            transition={{
-                                duration: 5,
-                                ease: "easeInOut",
-                                delay: 0.4,
-                            }}
-                            className="p-8 rounded-2xl backdrop-blur-lg bg-white/10
-                                       border border-white/20 shadow-2xl
-                                       hover:border-yellow-500/70 hover:shadow-yellow-500/40
-                                       transition-all duration-300"
-                        >
-                            <Star className="size-14 text-yellow-500 mx-auto mb-4 drop-shadow-lg" />
-                            <p className="text-6xl font-bold text-yellow-500">
-                                <Counter target={5} />+
-                            </p>
-                            <p className="mt-4 text-lg tracking-wide text-gray-200">
-                                Years Experience
-                            </p>
-                        </motion.div>
-                    </TiltCard>
-
+                    {/* Bottom Text */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="mt-20 text-center"
+                    >
+                        <p className="max-w-2xl mx-auto pb-1 text-neutral-400 text-lg leading-relaxed">
+                           Delivering consistent results and building credibility through expert training. Our students succeed because we focus on <span className="text-white font-medium">real-world skills</span>, hands-on learning, and practical guidance.                 
+                        </p>
+                    </motion.div>
                 </div>
-
-                {/* Description */}
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-center mt-16 text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed"
-                >
-                    Delivering consistent results and building credibility through expert training.
-                    Our students succeed because we focus on real-world skills, hands-on learning,
-                    and practical guidance.
-                </motion.p>
             </div>
         </section>
     );

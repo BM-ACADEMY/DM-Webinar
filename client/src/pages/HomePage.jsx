@@ -11,6 +11,7 @@ import GallerySection from "../sections/GallerySection";
 import AfterRegistrationSection from "../sections/AfterRegistrationSection";
 import FAQSection from "../sections/FAQSection";
 import Achievements from "../sections/Achievements";
+import WhatsAppBtn from "../sections/WhatsAppBtn";
 
 
 export default function HomePage() {
@@ -28,6 +29,7 @@ export default function HomePage() {
             <ContactSection />
             <GallerySection />
             <AfterRegistrationSection />
+            <WhatsAppBtn/>
             <FAQSection />
             {/* <CTASection /> */}
         </>

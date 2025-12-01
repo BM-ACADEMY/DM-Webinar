@@ -7,12 +7,17 @@ export default function LearnSection() {
     const [hoverIndex, setHoverIndex] = React.useState(null);
 
     return (
-        <div id="learn" className="px-4 md:px-16 lg:px-24 xl:px-32 mt-20">
+        <div id="learn" className="px-4 md:px-16 lg:px-24 xl:px-32 mt-0">
 
             {/* Section Heading */}
             <SectionTitle
                 text1="Learning Outcomes"
-                text2="What You’ll Learn in This 90-Minute Session"
+                text2={
+                    <>
+                        What You’ll Learn in This{" "}
+                        <span className="text-yellow-500">90-Minute Session</span>
+                    </>
+                }
                 text3="Everything you need to understand how AI + Digital Marketing can grow your career or business."
             />
 

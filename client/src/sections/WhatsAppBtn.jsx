@@ -1,0 +1,24 @@
+import { FloatingWhatsApp } from "react-floating-whatsapp";
+import logo from "../assets/Course/BM_ACADEMY-.png"; // Make sure to import your logo here
+
+export default function WhatsAppBtn() {
+  return (
+    <FloatingWhatsApp
+      phoneNumber="919944940051" // Your phone number (With Country Code, NO + sign)
+      accountName="BM Academy" // Your Company Name
+      avatar={logo} // Your Logo URL or import
+      statusMessage="online"
+      chatMessage="Hello! How can we help you with the webinar?"
+      placeholder="Type a message..."
+      
+      // Styling
+      darkMode={true} // Matches your dark website theme
+      allowEsc={true}
+      allowClickAway={true}
+      notification={true}
+      
+      // Positioning (Default is bottom-right, but you can adjust inline if needed)
+      // style={{ bottom: '30px', right: '30px' }} 
+    />
+  );
+}
