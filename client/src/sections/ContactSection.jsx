@@ -1,7 +1,7 @@
 import { ArrowRightIcon, MailIcon, UserIcon, PhoneIcon, MapPinIcon, CalendarIcon } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../api/axios";
 import SectionTitle from "../components/SectionTitle";
 
 export default function RegistrationSection() {
@@ -64,21 +64,23 @@ export default function RegistrationSection() {
             }
 
             try {
-                const emailResponse = await axios.post(`${apiUrl}/send-email`, form, { timeout: 15000 });
-                if (emailResponse.status === 200) {
-                    emailSuccess = true;
-                    console.log("Email submission successful:", emailResponse.data);
-                }
-            } catch (emailError) {
-                console.error("Email submission error:", emailError);
-                if (emailError.code === 'ECONNABORTED') {
-                    errors.push("Email timed out—check backend.");
-                } else if (!apiUrl || apiUrl.includes('localhost')) {
-                    errors.push("Email API not set—add VITE_BASE_URL to .env.");
-                } else {
-                    errors.push(`Email failed: ${emailError.response?.data?.message || emailError.message}`);
-                }
-            }
+  const emailResponse = await axiosInstance.post("/send-email", form);
+  if (emailResponse.status === 200) {
+    emailSuccess = true;
+    console.log("Email submission successful:", emailResponse.data);
+  }
+} catch (emailError) {
+  console.error("Email submission error:", emailError);
+
+  if (emailError.code === "ECONNABORTED") {
+    errors.push("Email timed out—backend is slow or sleeping.");
+  } else if (!apiUrl) {
+    errors.push("VITE_BASE_URL missing in .env.");
+  } else {
+    errors.push(`Email failed: ${emailError.response?.data?.message || emailError.message}`);
+  }
+}
+
 
             // Set message based on results
             if (sheetSuccess && emailSuccess) {
