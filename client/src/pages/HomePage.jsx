@@ -11,7 +11,6 @@ import GallerySection from "../sections/GallerySection";
 import AfterRegistrationSection from "../sections/AfterRegistrationSection";
 import FAQSection from "../sections/FAQSection";
 import Achievements from "../sections/Achievements";
-import VectorShape from "../sections/VectorShape";
 
 
 export default function HomePage() {
@@ -23,7 +22,6 @@ export default function HomePage() {
             <LearnSection />
             <CourseSection />
             <HostSection />
-            <VectorShape />
             <Achievements />
             {/* <TestimonialSection />
             <PricingSection /> */}

@@ -82,7 +82,6 @@ export default function Achievements() {
                             viewport={{ once: true }}
                             animate={{ y: [0, -12, 0] }}
                             transition={{
-                                repeat: Infinity,
                                 duration: 5,
                                 ease: "easeInOut",
                             }}
@@ -109,7 +108,6 @@ export default function Achievements() {
                             viewport={{ once: true }}
                             animate={{ y: [0, -12, 0] }}
                             transition={{
-                                repeat: Infinity,
                                 duration: 5,
                                 ease: "easeInOut",
                                 delay: 0.2,
@@ -137,7 +135,6 @@ export default function Achievements() {
                             viewport={{ once: true }}
                             animate={{ y: [0, -12, 0] }}
                             transition={{
-                                repeat: Infinity,
                                 duration: 5,
                                 ease: "easeInOut",
                                 delay: 0.4,
