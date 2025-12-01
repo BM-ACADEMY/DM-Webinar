@@ -64,7 +64,7 @@ export default function RegistrationSection() {
             }
 
             try {
-                const emailResponse = await axios.post(`${apiUrl}/send-email`, form, { timeout: 45000 });
+                const emailResponse = await axios.post(`${apiUrl}/mail/send-email`, form, { timeout: 15000 });
                 if (emailResponse.status === 200) {
                     emailSuccess = true;
                     console.log("Email submission successful:", emailResponse.data);
