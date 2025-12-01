@@ -12,8 +12,8 @@ export default function AfterRegistrationSection() {
     const steps = [
         {
             icon: AiOutlineMessage,
-            title: "WhatsApp Confirmation",
-            description: "You will receive a WhatsApp message with your selected date and webinar link."
+            title: "Email Confirmation",
+            description: "You will receive a mail with your selected date and webinar link."
         },
         {
             icon: AiOutlineCalendar,

@@ -12,17 +12,21 @@ export default function Footer() {
 
                 {/* COLUMN 1 — COMPANY INFO */}
                 <div>
-                    <p className="text-xl font-bold">
-                        <span className="text-white">BM </span>
-                        <span className="text-yellow-500">ACADEMY</span>
-                    </p>
+    {/* LOGO */}
+    <img
+        src={logo}
+        alt="BM Academy Logo"
+        className="h-16 w-auto object-contain mb-4"
+    />
 
-                    <p className="mt-4 leading-relaxed text-sm text-gray-400">
-                        BM Academy is a multi-vertical training institute empowering 
-                        students through Digital Marketing, AI tools, Software Development, 
-                        and Skill Training — built on integrity, innovation, and real-world skills.
-                    </p>
-                </div>
+    
+
+    <p className="mt-4 leading-relaxed text-sm text-gray-400">
+        BM Academy is a multi-vertical training institute empowering 
+        students through Digital Marketing, AI tools, Software Development, 
+        and Skill Training — built on integrity, innovation, and real-world skills.
+    </p>
+</div>
 
                 {/* COLUMN 2 — QUICK LINKS (FROM footerData) */}
                 <div>

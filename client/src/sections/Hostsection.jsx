@@ -14,13 +14,14 @@ export default function HostSection() {
 
     return (
         <div id="host" className="px-4 md:px-12 lg:px-20 xl:px-32 mt-24">
+            
 
             <SectionTitle
                 text1="About Your Host"
                 text2="Meet Your Host – Kamarudeen BM"
                 text3="Founder of ABM Groups & BM Academy, empowering thousands with AI + Digital Marketing."
             />
-
+    
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start mt-16">
 
                 {/* Left Image */}
