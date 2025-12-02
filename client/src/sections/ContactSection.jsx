@@ -130,7 +130,7 @@ export default function RegistrationSection() {
     };
 
     return (
-        <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 pt-0 relative" id="contact">
+        <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 pt-0 relative overflow-x-hidden" id="contact">
             
             {/* Toast Container */}
             <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
@@ -150,7 +150,7 @@ export default function RegistrationSection() {
             )}
 
             <SectionTitle
-                text1="Webinar Details and Registration Form"
+                text1="Registration Form"
                 text2="Save Your Seat – Free Webinar Registration"
                 text3="Fill in your details to get the webinar link and WhatsApp reminders."
             />
