@@ -4,7 +4,7 @@ import logo from "../assets/Course/BM_ACADEMY-.png"; // Make sure to import your
 export default function WhatsAppBtn() {
   return (
     <FloatingWhatsApp
-      phoneNumber="919944940051" // Your phone number (With Country Code, NO + sign)
+      phoneNumber="919944288271" 
       accountName="BM Academy" // Your Company Name
       avatar={logo} // Your Logo URL or import
       statusMessage="online"
