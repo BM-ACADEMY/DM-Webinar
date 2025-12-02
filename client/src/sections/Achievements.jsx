@@ -127,7 +127,8 @@ export default function Achievements() {
                                     <AnimatedCounter to={400} />+
                                 </h3>
                                 <p className="text-lg font-medium text-yellow-500/90 tracking-wide uppercase text-sm">
-                                    Career Transitions
+                                    Students Placed
+
                                 </p>
                             </motion.div>
                         </TiltCard>
@@ -151,7 +152,8 @@ export default function Achievements() {
                                     <AnimatedCounter to={5} />+
                                 </h3>
                                 <p className="text-lg font-medium text-yellow-500/90 tracking-wide uppercase text-sm">
-                                    Years Excellence
+                                    Years Experience
+
                                 </p>
                             </motion.div>
                         </TiltCard>
@@ -166,7 +168,7 @@ export default function Achievements() {
                         className="mt-20 text-center"
                     >
                         <p className="max-w-2xl mx-auto pb-1 text-neutral-400 text-lg leading-relaxed">
-                           Delivering consistent results and building credibility through expert training. Our students succeed because we focus on <span className="text-white font-medium">real-world skills</span>, hands-on learning, and practical guidance.                 
+                           Delivering consistent results and building credibility through expert training.                
                         </p>
                     </motion.div>
                 </div>
