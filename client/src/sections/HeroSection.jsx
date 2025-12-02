@@ -215,7 +215,7 @@ export default function HeroSection() {
 
           <span className="relative flex items-center gap-2">
            Register for the Free Al + Digital Marketing Webinar
-            <CheckCircle2 size={20} />
+            {/* <CheckCircle2 size={20} /> */}
           </span>
         </a>
 

@@ -13,7 +13,7 @@ export default function HostSection() {
   ];
 
   return (
-    <div id="host" className="px-4 md:px-12 lg:px-20 xl:px-32 mt-0 pb-10">
+    <div id="host" className="px-4 md:px-12 lg:px-20 xl:px-32 mt-0 pb-10 overflow-x-hidden">
       <SectionTitle
         text1="About Your Host"
         text2={
