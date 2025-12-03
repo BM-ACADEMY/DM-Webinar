@@ -6,10 +6,13 @@ import img2 from "../assets/DM/IMG-20251031-WA0005.jpg";
 import img3 from "../assets/DM/DM_1.jpg";
 import img4 from "../assets/DM/DM_2.jpg";
 import img5 from "../assets/DM/IMG-20251031-WA0003.jpg";
-import img6 from "../assets/DM/IMG-20251031-WA0004.jpg";
+import img6 from "../assets/gallery/image1.jpg";
+import img7 from "../assets/gallery/image2.jpg";
+import img8 from "../assets/gallery/image3.jpg";
+import img9 from "../assets/gallery/image4.jpg";
 
 export default function GallerySection() {
-    const images = [img1, img2, img3, img4, img5, img6];
+    const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
 
     return (
         <div id="gallery" className="px-4 md:px-12 lg:px-20 xl:px-32 mt-24">
