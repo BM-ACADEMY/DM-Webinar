@@ -49,12 +49,14 @@ export default function HeroSection() {
 
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
-            Launch Your{" "}
+            Why Choose{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-400">
-              Digital Marketing Career with{" "}
+              AI + Digital Marketing{" "}
+
             </span>
+            for Your {" "} 
             <span className="text-white relative inline-block">
-              AI
+              Career ?
               {/* Underline decoration */}
               <svg
                 className="absolute w-full h-3 -bottom-1 left-0 text-yellow-500"
@@ -69,12 +71,18 @@ export default function HeroSection() {
                 />
               </svg>
             </span>
-            <br className="hidden sm:block" /> in 90 Minutes
           </h1>
         </div>
 
-        <p className="mt-6 text-slate-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-          <span className="text-white">Free</span>  Live Webinar in <span className="text-white">Tamil</span> – Learn how to use <span className="text-white">AI + Digital Marketing</span> to get a job, grow your business, or start freelancing.
+        <p className="mt-6 text-slate-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <span className="text-yellow-500">Free 90-Minute Live Masterclass in Tamil</span> — Get the insider scoop on hot job trends, real skills, and why 
+  <span className="text-yellow-500"> BM Academy </span> 
+  is your launchpad to success. Ready to land a great job, {" "}
+  <span className="text-yellow-500">boost your business, or start freelancing</span>? 
+  This is your fast track—don’t miss out!
+
+
+
         </p>
       </motion.div>
 
@@ -154,7 +162,7 @@ export default function HeroSection() {
             <Calendar size={20} />
           </div>
           <div>
-            <p className="text-white font-medium">Dec 14, 2025</p>
+            <p className="text-white font-medium">Dec 27, 2025</p>
             <p className="text-xs text-slate-500">
               Sunday • 4:30 PM – 6:00 PM
             </p>
