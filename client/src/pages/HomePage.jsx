@@ -9,24 +9,26 @@ import AfterRegistrationSection from "../sections/AfterRegistrationSection";
 import FAQSection from "../sections/FAQSection";
 import Achievements from "../sections/Achievements";
 import WhatsAppBtn from "../sections/WhatsAppBtn";
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function HomePage() {
-    return (
-        <>
-            <HeroSection />
-            
-            <FeaturesSection />
-            <LearnSection />
-            <CourseSection />
-            <HostSection />
-            <Achievements />
-            <ContactSection />
-            <GallerySection />
-            <AfterRegistrationSection />
-            <WhatsAppBtn/>
-            <FAQSection />
-            {/* <CTASection /> */}
-        </>
-    );
+  return (
+    <div className="bg-black text-white antialiased">
+      <Navbar />
+      <HeroSection />
+      <FeaturesSection />
+      <LearnSection />
+      <CourseSection />
+      <HostSection />
+      <Achievements />
+      <ContactSection />
+      <GallerySection />
+      <AfterRegistrationSection />
+      <WhatsAppBtn />
+      <FAQSection />
+      <Footer />
+      {/* <CTASection /> */}
+    </div>
+  );
 }
