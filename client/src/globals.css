@@ -15,3 +15,8 @@
   @apply bg-clip-text text-transparent;
   font-weight: 800;
 }
+
+
+*{
+  scroll-behavior: smooth;
+}

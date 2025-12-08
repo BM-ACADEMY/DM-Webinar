@@ -18,7 +18,7 @@ import Navbar from "../layout/Navbar";
 // --- HERO SECTION COMPONENT ---
 const HeroSection = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden min-h-screen pt-28 sm:pt-36 pb-20 bg-[#030303]">
+    <div id="home" className="relative flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden min-h-screen pt-28 sm:pt-36 pb-20 bg-[#030303]">
       
       {/* --- BACKGROUND EFFECTS --- */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>

@@ -51,7 +51,7 @@ const WhyAISection = () => {
   ];
 
   return (
-    <section className="relative w-full py-20 px-6 overflow-hidden bg-black text-neutral-200 font-sans">
+    <section id="whyai" className="relative w-full py-20 px-6 overflow-hidden bg-black text-neutral-200 font-sans">
       {/* 1. Vector Grid Background */}
       <div className="absolute inset-0 z-0">
         {/* Subtle grid pattern using gradients */}
