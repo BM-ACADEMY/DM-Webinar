@@ -28,7 +28,7 @@ const WhyAISection = () => {
       id: 1,
       title: "Industry Transformation",
       icon: <BrainCircuit className="w-8 h-8 text-yellow-500" />,
-      text: "AI and Full-Stack Development are transforming every industry—from agile startups to global enterprises.",
+      text: "AI and Data Analytics are transforming every industry—from healthcare to finance, marketing to tech.",
       gradient: "from-yellow-500/10 to-yellow-600/10",
       border: "group-hover:border-yellow-500/50",
     },
@@ -36,7 +36,7 @@ const WhyAISection = () => {
       id: 2,
       title: "High-Paying Careers",
       icon: <TrendingUp className="w-8 h-8 text-yellow-500" />,
-      text: "Companies pay top salaries for developers who can build and deploy intelligent, scalable applications.",
+      text: "Companies pay top salaries for professionals who can turn data into smart decisions.",
       gradient: "from-yellow-500/10 to-yellow-600/10",
       border: "group-hover:border-yellow-500/50",
     },
@@ -44,14 +44,14 @@ const WhyAISection = () => {
       id: 3,
       title: "Ultimate Flexibility",
       icon: <Globe className="w-8 h-8 text-yellow-500" />,
-      text: "Flexible career paths: full-time jobs, freelancing, remote work, or launching your own startup—you choose!",
+      text: "Flexible career paths: full-time jobs, freelancing, remote work, startups—you choose!",
       gradient: "from-yellow-500/10 to-yellow-600/10",
       border: "group-hover:border-yellow-500/50",
     },
   ];
 
   return (
-    <section id="whyai" className="relative w-full py-20 px-6 overflow-hidden bg-black text-neutral-200 font-sans">
+    <section className="relative w-full py-20 px-6 overflow-hidden bg-black text-neutral-200 font-sans">
       {/* 1. Vector Grid Background */}
       <div className="absolute inset-0 z-0">
         {/* Subtle grid pattern using gradients */}
@@ -59,25 +59,25 @@ const WhyAISection = () => {
       </div>
 
       {/* 2. Animated Background Blobs (Drifting) */}
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.3, 0.2],
           x: [0, 50, 0],
           y: [0, 30, 0]
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-[100px] -z-10" 
+        className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-[100px] -z-10"
       />
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
             scale: [1, 1.1, 1],
             opacity: [0.1, 0.2, 0.1],
             x: [0, -30, 0],
             y: [0, -50, 0]
         }}
         transition={{ duration: 12, repeat: Infinity, ease: "linear", delay: 2 }}
-        className="absolute bottom-0 right-1/4 w-96 h-96 bg-neutral-800/20 rounded-full blur-[100px] -z-10" 
+        className="absolute bottom-0 right-1/4 w-96 h-96 bg-neutral-800/20 rounded-full blur-[100px] -z-10"
       />
 
       {/* 3. Floating Particles Animation */}
@@ -86,7 +86,7 @@ const WhyAISection = () => {
           <motion.div
             key={i}
             initial={{ opacity: 0, y: "100%" }}
-            animate={{ 
+            animate={{
               opacity: [0, 0.5, 0],
               y: ["100%", "0%"]
             }}
@@ -100,7 +100,7 @@ const WhyAISection = () => {
             style={{
               left: `${Math.random() * 100}%`,
               // Randomly distribute starting position slightly
-              top: `${Math.random() * 100}%` 
+              top: `${Math.random() * 100}%`
             }}
           />
         ))}
@@ -121,14 +121,14 @@ const WhyAISection = () => {
             </span>
             High Demand Skillset
           </motion.div>
-          
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-white"
           >
-            Why <span className="text-yellow-500">AI</span> + <span className="text-yellow-500">Full-Stack?</span>
+            Why <span className="text-yellow-500">AI</span> + <span className="text-yellow-500">Data Analytics?</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -180,7 +180,7 @@ const WhyAISection = () => {
         <div className="relative group">
             {/* Animated Gradient Border Layer */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-500/0 via-yellow-500/50 to-yellow-500/0 rounded-3xl opacity-50 blur-md group-hover:opacity-100 transition duration-500 group-hover:duration-200"></div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -189,31 +189,31 @@ const WhyAISection = () => {
             >
               {/* Animated Background Mesh/Grid */}
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-              
+
               {/* Radial Gradient for depth */}
               <div className="absolute inset-0 bg-neutral-900 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
               <div className="relative py-16 px-6 md:px-12 text-center z-10">
-                <motion.h3 
+                <motion.h3
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
                   className="text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight"
                 >
-                  Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Build the Future?</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Don’t Miss Out</span>
                 </motion.h3>
-                
-                <motion.p 
+
+                <motion.p
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                   className="text-neutral-400 mb-10 max-w-xl mx-auto text-lg"
                 >
-                  Join the elite group of developers who are shaping the world with AI-powered applications. Limited spots available.
+                  Limited spots available.
                 </motion.p>
-                
+
                 <motion.a
-                  href="https://wa.me/919944288271?text=Hi,%20I'm%20interested%20in%20joining%20the%20AI%20Full-Stack-Development%20program!"
+                  href="https://wa.me/919944288271?text=Hi,%20I'm%20interested%20in%20joining%20the%20AI%20Data%20Analytics%20program!"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
@@ -222,7 +222,7 @@ const WhyAISection = () => {
                 >
                   <span className="relative z-10">Reserve Your Spot Today</span>
                   <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                  
+
                   {/* Button Shine Effect on Hover */}
                   <div className="absolute inset-0 -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                 </motion.a>

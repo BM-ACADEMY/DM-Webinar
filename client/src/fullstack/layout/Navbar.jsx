@@ -29,21 +29,21 @@ const Navbar = () => {
   }, [isOpen]);
 
   const navLinks = [
-    { title: "Home", href: "#" },
-    { title: "About", href: "#" },
-    { title: "Services", href: "#" },
-    { title: "Portfolio", href: "#" },
-    { title: "Contact", href: "#" },
+    { title: "Home", href: "#home" },
+    { title: "Why AI", href: "#whyai" },
+    { title: "Why choose", href: "#whychoose" },
+    { title: "FAQ", href: "#faq" },
+    // { title: "Contact", href: "#" },
   ];
 
   // --- ANIMATION: Top to Bottom ---
   const menuVariants = {
     initial: {
-      y: "-100%", 
+      y: "-100%",
       opacity: 0,
     },
     animate: {
-      y: 0, 
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.5,
@@ -51,7 +51,7 @@ const Navbar = () => {
       },
     },
     exit: {
-      y: "-100%", 
+      y: "-100%",
       opacity: 0,
       transition: {
         duration: 0.4,
@@ -80,18 +80,17 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/5 backdrop-blur-md shadow-sm py-3"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
+          ? "bg-white/5 backdrop-blur-xl  py-3"
           : "bg-transparent py-5"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        
+
         {/* --- Left: Main Navbar Logo --- */}
         <div className="flex-shrink-0 cursor-pointer z-50">
           <img
-            src={Logo} 
+            src={Logo}
             alt="Brand Logo"
             className="h-14 w-auto object-contain"
           />
@@ -113,9 +112,13 @@ const Navbar = () => {
 
         {/* --- Right: Button --- */}
         <div className="hidden md:block">
-          <button className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-500 text-white px-6 py-2.5 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg shadow-yellow-500/30">
-            Get Started <ArrowRight size={18} />
+          <button
+            onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}
+            className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-500 text-white px-6 py-2.5 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg shadow-yellow-500/30"
+          >
+            Contact <ArrowRight size={18} />
           </button>
+
         </div>
 
         {/* --- Mobile Menu Toggle --- */}
@@ -138,19 +141,19 @@ const Navbar = () => {
           >
             {/* --- Top Header inside Menu --- */}
             <div className="container mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
-              
+
               {/* --- LOGO FOR MOBILE MENU --- */}
               <div className="flex-shrink-0">
-                 <img 
-                   src={MobileLogo}
-                   alt="Mobile Logo" 
-                   className="h-16 w-auto object-contain" /* Slightly reduced logo size too */
-                 />
+                <img
+                  src={MobileLogo}
+                  alt="Mobile Logo"
+                  className="h-16 w-auto object-contain" /* Slightly reduced logo size too */
+                />
               </div>
 
               {/* CLOSE ICON */}
-              <button 
-                onClick={() => setIsOpen(false)} 
+              <button
+                onClick={() => setIsOpen(false)}
                 className="p-2 text-gray-800 hover:text-red-500 transition-colors"
               >
                 <X size={32} />
@@ -184,7 +187,7 @@ const Navbar = () => {
                 {/* Mobile Button */}
                 <div className="overflow-hidden mt-6 w-full max-w-[200px]"> {/* Reduced width constraint */}
                   <motion.div variants={mobileLinkVars}>
-                    <button className="bg-yellow-500 text-white w-full py-3 rounded-full text-lg font-medium active:scale-95 transition-transform flex items-center justify-center gap-2">
+                    <button  onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })} className="bg-yellow-500 text-white w-full py-3 rounded-full text-lg font-medium active:scale-95 transition-transform flex items-center justify-center gap-2">
                       {/* Reduced padding (py-3) and font size (text-lg) */}
                       Get Started <ArrowRight size={18} />
                     </button>
