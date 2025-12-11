@@ -10,6 +10,8 @@ import WhySection from '@/Data_Analyst/Homepages/Whysection'
 import Contact from '@/Data_Analyst/Homepages/Contact'
 import React from 'react'
 import Footer from '@/components/Footer'
+import Faq from '@/Data_Analyst/Homepages/Faq'
+import WhatsAppBtn from '@/sections/WhatsAppBtn'
 
 const Data_Analyst = () => {
   return (
@@ -22,6 +24,8 @@ const Data_Analyst = () => {
       <MasterClassSection />
       <WhoShouldJoin />
       <Contact />
+      <Faq />
+      <WhatsAppBtn />
       <Footer />
     </div>
   )
