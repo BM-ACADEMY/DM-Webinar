@@ -28,7 +28,7 @@ const WhyAISection = () => {
       id: 1,
       title: "Industry Transformation",
       icon: <BrainCircuit className="w-8 h-8 text-yellow-500" />,
-      text: "AI and Full-Stack Development are transforming every industry—from agile startups to global enterprises.",
+      text: "AI and Full-Stack Development are transforming every industry—from startups to global enterprises.",
       gradient: "from-yellow-500/10 to-yellow-600/10",
       border: "group-hover:border-yellow-500/50",
     },

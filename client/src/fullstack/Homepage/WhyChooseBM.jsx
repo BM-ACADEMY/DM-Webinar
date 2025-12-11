@@ -16,7 +16,7 @@ const features = [
   {
     icon: <FaGraduationCap />,
     title: "Beginner Friendly",
-    description: "No prior coding needed—step-by-step guidance in Tamil/Tanglish.",
+    description: "No prior coding needed—step-by-step guidance in Tamil/English.",
   },
   {
     icon: <FaBriefcase />,
@@ -154,48 +154,6 @@ const WhyChooseUs = () => {
           ))}
         </motion.div>
 
-        {/* --- BOTTOM CTA SECTION (Styled like Image) --- */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          // Matches the dark card aesthetic from
-          className="relative max-w-5xl mx-auto text-center bg-[#0a0a0a] border border-white/10 rounded-3xl p-10 md:p-14 overflow-hidden shadow-2xl"
-        >
-           {/* Internal Grid Background for the card */}
-         <div 
-  className="absolute inset-0 opacity-[0.07] pointer-events-none" 
-  style={{
-    backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-    backgroundSize: '20px 20px',
-    maskImage: 'linear-gradient(to bottom, transparent 0%, black 80%)',
-    WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 80%)'
-  }}
-></div>
-
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Ready to <span className="text-yellow-500">Build the Future?</span>
-            </h2>
-            <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-              Join the elite group of developers who are shaping the world. Limited spots available for the next batch.
-            </p>
-
-            <div className="flex flex-col items-center justify-center gap-6">
-              {/* Button styled like the yellow button in */}
-              <a
-                href={`https://wa.me/919944288271?text=${encodeURIComponent(defaultMessage)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-3 px-10 py-4 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold text-lg rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] hover:-translate-y-1"
-              >
-                <span>Reserve Your Spot Today</span>
-                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-          </div>
-        </motion.div>
 
       </div>
     </section>

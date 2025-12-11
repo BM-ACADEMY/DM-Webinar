@@ -98,8 +98,8 @@ const HeroSection = () => {
           <div className="p-6 space-y-5">
             <div className="space-y-3">
               {[
-                { date: "Dec 06, 2025", time: "Saturday • 4:30 PM – 6:00 PM" },
-                { date: "Dec 14, 2025", time: "Sunday • 4:30 PM – 6:00 PM" }
+                { date: "Dec 13, 2025", time: "Saturday • 4:30 PM – 6:00 PM" },
+                { date: "Dec 27, 2025", time: "Sunday • 4:30 PM – 6:00 PM" }
               ].map((batch, idx) => (
                 <div key={idx} className="group flex items-center gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-yellow-500/30 transition-colors cursor-default">
                   <div className="bg-white/10 p-2 rounded-lg text-slate-300 group-hover:text-yellow-400 group-hover:bg-yellow-500/10 transition-colors">

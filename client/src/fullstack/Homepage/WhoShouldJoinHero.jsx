@@ -43,13 +43,13 @@ const WhoShouldJoinHero = () => {
       title: "Students and freshers aiming for a tech career",
       desc: "Aiming to kickstart a high-growth tech career.",
       icon: <GraduationCap className="w-6 h-6" />,
-      color: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+      color: "bg-orange-500/10 text-orange-400 border-orange-500/20",
     },
     {
       title: "Working professionals looking to upskill or switch careers",
       desc: "Looking to upskill, pivot, or switch careers.",
       icon: <Briefcase className="w-6 h-6" />,
-      color: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+      color: "bg-orange-500/10 text-orange-400 border-orange-500/20",
     },
     {
       title: "Anyone curious about AI and software development",

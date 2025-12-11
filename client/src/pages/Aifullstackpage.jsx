@@ -9,7 +9,6 @@ import WhoShouldJoinHero from '../fullstack/Homepage/WhoShouldJoinHero'
 import Mastertamil from '@/fullstack/Homepage/Mastertamil'
 import ReserveSeatSection from '@/fullstack/Homepage/Reservesection'
 import FAQSection from '@/fullstack/Homepage/Faq'
-import Calltoaction from '@/fullstack/Homepage/Calltoaction'
 import Footer from '@/fullstack/layout/Footer'
 import WhatsAppBtn from '@/fullstack/Homepage/Whatsapp'
 
@@ -26,7 +25,6 @@ const Aifullstackpage = () => {
       <Mastertamil/>
       <ReserveSeatSection/>
       <FAQSection/>
-      <Calltoaction/>
       <WhatsAppBtn/>
       <Footer/>
     </div>
