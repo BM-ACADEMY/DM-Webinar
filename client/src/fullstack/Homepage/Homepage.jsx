@@ -59,7 +59,7 @@ const HeroSection = () => {
         </p>
       </motion.div>
 
-      {/* <motion.div
+      <motion.div
         className="mt-10 relative z-10 w-full max-w-xl mx-auto"
         initial={{ scale: 0.9, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
@@ -135,7 +135,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-      </motion.div> */}
+      </motion.div>
 
       {/* 3. CTA & Trust */}
       <motion.div

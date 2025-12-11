@@ -161,14 +161,13 @@ const WhyChooseUs = () => {
           className="relative max-w-5xl mx-auto text-center bg-[#0a0a0a] border border-white/10 rounded-3xl p-10 md:p-14 overflow-hidden shadow-2xl"
         >
            {/* Internal Grid Background for the card */}
-           <div 
+         <div 
   className="absolute inset-0 opacity-[0.07] pointer-events-none" 
   style={{
     backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
     backgroundSize: '20px 20px',
-    // This fades the top (transparent at start, visible after 20%)
-    maskImage: 'linear-gradient(to bottom, transparent 0%, black 200%)',
-    WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%)'
+    maskImage: 'linear-gradient(to bottom, transparent 0%, black 80%)',
+    WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 80%)'
   }}
 ></div>
 
