@@ -204,10 +204,16 @@ const MasterclassPage = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shine_1.5s_infinite]" />
                 </div>
 
-                <span className="relative flex items-center text-white gap-2">
-                   Reserve Your FREE Seat Now!
-                   <ArrowRight className="w-5 h-5 transition-transform duration-300 text-white group-hover:translate-x-1" />
-                </span>
+                <a
+  href="/Data_Analyst#contact"
+  className="group relative flex items-center text-white gap-2 cursor-pointer"
+>
+  <span className="relative flex items-center gap-2">
+    Reserve Your FREE Seat Now!
+    <ArrowRight className="w-5 h-5 transition-transform duration-300 text-white group-hover:translate-x-1" />
+  </span>
+</a>
+
               </motion.a>
 
               <motion.p

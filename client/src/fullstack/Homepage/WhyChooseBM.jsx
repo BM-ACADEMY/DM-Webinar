@@ -48,16 +48,14 @@ const cardVariants = {
 };
 
 const WhyChooseUs = () => {
-  // Define the default WhatsApp message
   const defaultMessage = "Hi, I'm interested in reserving a seat for the Free Masterclass!";
 
   return (
-
-    <section className="py-24 bg-gray-950 relative overflow-hidden">
-
-
     <section id='whychoose' className="py-24 bg-gray-950 relative overflow-hidden">
-      
+
+
+
+
 
       {/* --- NEW VECTOR BACKGROUND (Clean Grid) --- */}
       {/* This matches the 'grid' look in your uploaded image */}

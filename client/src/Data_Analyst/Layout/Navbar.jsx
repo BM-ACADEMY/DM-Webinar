@@ -25,7 +25,7 @@ const Navbar = () => {
 
   // Navbar items
   const navLinks = [
-    { title: "Home", href: "#home" },
+    { title: "Home", href: "#top" },
     { title: "Webinar", href: "#webinar" },
     { title: "Contact", href: "#contact" },
   ];
@@ -55,9 +55,14 @@ const Navbar = () => {
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
 
         {/* Logo */}
-        <div className="flex-shrink-0 cursor-pointer z-50">
-          <img src={Logo} alt="Brand Logo" className="h-14 w-auto object-contain" />
-        </div>
+<a href="#top" className="flex-shrink-0 cursor-pointer z-50">
+  <img
+    src={Logo}
+    alt="Brand Logo"
+    className="h-14 md:h-16 lg:h-16 w-auto object-contain"
+  />
+</a>
+
 
         {/* Desktop links */}
         <nav className="hidden md:flex items-center gap-10 mx-auto">
@@ -75,7 +80,7 @@ const Navbar = () => {
         {/* Register button */}
         <div className="hidden md:block">
           <a
-            href="#register"
+            href="#contact"
             className="px-6 py-2.5 bg-yellow-500 hover:bg-yellow-400 rounded-full text-black font-bold transition"
           >
             Register
