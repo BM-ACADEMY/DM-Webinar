@@ -220,7 +220,7 @@ const WhyAISection = () => {
                   whileTap={{ scale: 0.95 }}
                   className="group relative inline-flex items-center gap-3 px-8 py-4 bg-yellow-500 text-neutral-950 rounded-full font-bold text-lg shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_40px_rgba(234,179,8,0.5)] transition-all duration-300 overflow-hidden cursor-pointer"
                 >
-                  <span className="relative z-10">Reserve Your Spot Today</span>
+                  <span className="relative z-10">For more Details connect with us</span>
                   <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
 
                   {/* Button Shine Effect on Hover */}

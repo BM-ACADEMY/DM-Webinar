@@ -96,7 +96,7 @@ export default function HeroSection() {
     {
       icon: Languages,
       label: 'Language',
-      mainText: 'Tamil',
+      mainText: 'Tamil/English',
     },
   ];
 
@@ -310,7 +310,7 @@ export default function HeroSection() {
 
       {/* Host Strip */}
       <motion.div
-        className="mt-6 sm:mt-10 bg-yellow-600/20 border border-yellow-600/40 px-3 sm:px-6 py-3
+        className="mt-6 sm:mt-10 mb-21 bg-yellow-600/20 border border-yellow-600/40 px-3 sm:px-6 py-3
                  rounded-full text-white text-xs sm:text-sm md:text-base
                  flex flex-wrap justify-center gap-1 sm:gap-2"
         initial="hidden"
