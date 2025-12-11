@@ -52,12 +52,7 @@ const WhyChooseUs = () => {
   const defaultMessage = "Hi, I'm interested in reserving a seat for the Free Masterclass!";
 
   return (
-
     <section className="py-24 bg-gray-950 relative overflow-hidden">
-
-
-    <section id='whychoose' className="py-24 bg-gray-950 relative overflow-hidden">
-      
 
       {/* --- NEW VECTOR BACKGROUND (Clean Grid) --- */}
       {/* This matches the 'grid' look in your uploaded image */}
@@ -116,7 +111,7 @@ const WhyChooseUs = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Discover the future of coding and secure your spot in the <span className="text-slate-200 font-medium">AI revolution</span>.
+            Discover the future of data analytics and secure your spot in the <span className="text-slate-200 font-medium">AI and Data Analytics revolution</span>.
           </motion.p>
         </div>
 
@@ -182,7 +177,7 @@ const WhyChooseUs = () => {
               Ready to <span className="text-yellow-500">Build the Future?</span>
             </h2>
             <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-              Join the elite group of developers who are shaping the world. Limited spots available for the next batch.
+              Join the elite group of data professionals who are shaping the world. Limited spots available for the next batch.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-6">
