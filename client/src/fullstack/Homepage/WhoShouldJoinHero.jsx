@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  CheckCircle, 
   ArrowRight, 
-  Sparkles, 
   GraduationCap, 
   Briefcase, 
-  Cpu 
+  Cpu ,
+  CheckCircle
 } from 'lucide-react';
-import Animated from "@/assets/Going up-cuate.png"
+// Make sure this path is correct for your project
+import Animated from "@/assets/Going up-cuate.png" 
 
 const WhoShouldJoinHero = () => {
   // Animation variants
@@ -28,24 +28,34 @@ const WhoShouldJoinHero = () => {
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
+  // --- HANDLER FOR BUTTON CLICK ---
+  const handleRegisterClick = () => {
+    const phoneNumber = "919944288271"; // Added Country Code for India
+    const message = "Hi, I'm interested in reserving a seat for the Free Masterclass!";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    // Open in new tab
+    window.open(whatsappUrl, '_blank');
+  };
+
   const audienceList = [
     {
-      title: "Students & Freshers",
+      title: "Students and freshers aiming for a tech career",
       desc: "Aiming to kickstart a high-growth tech career.",
       icon: <GraduationCap className="w-6 h-6" />,
-      color: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+      color: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
     },
     {
-      title: "Working Professionals",
+      title: "Working professionals looking to upskill or switch careers",
       desc: "Looking to upskill, pivot, or switch careers.",
       icon: <Briefcase className="w-6 h-6" />,
-      color: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+      color: "bg-amber-500/10 text-amber-400 border-amber-500/20",
     },
     {
-      title: "AI Enthusiasts",
+      title: "Anyone curious about AI and software development",
       desc: "Curious minds with zero prior experience needed.",
       icon: <Cpu className="w-6 h-6" />,
-      color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+      color: "bg-orange-500/10 text-orange-400 border-orange-500/20",
     },
   ];
 
@@ -58,9 +68,9 @@ const WhoShouldJoinHero = () => {
       {/* Requested Mask Overlay */}
       <div className="absolute inset-0 bg-gray-950 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_100%)]"></div>
 
-      {/* Decorative colored glows behind elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600/20 rounded-full blur-[100px] opacity-30" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px] opacity-30" />
+      {/* Decorative colored glows */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-600/20 rounded-full blur-[100px] opacity-30" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-600/20 rounded-full blur-[100px] opacity-30" />
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
         
@@ -73,15 +83,13 @@ const WhoShouldJoinHero = () => {
         >
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-800 bg-gray-900">
             {/* Image with subtle overlay */}
-            <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay z-10"></div>
+            <div className="absolute inset-0 bg-yellow-900/10 mix-blend-overlay z-10"></div>
             <img 
               src={Animated}
               alt="Team collaborating on code" 
               className="w-full h-auto object-cover min-h-[500px] opacity-90"
             />
-            
-            {/* Floating Badge Overlay */}
-            <motion.div 
+           <motion.div 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
@@ -91,15 +99,14 @@ const WhoShouldJoinHero = () => {
                 <CheckCircle className="w-6 h-6 text-emerald-400" />
               </div>
               <div>
-                <p className="text-sm font-bold text-white">Beginner Friendly</p>
-                <p className="text-xs text-gray-400">No coding background required</p>
+                <p className="text-sm font-bold text-white">No prior experience needed!</p>
               </div>
             </motion.div>
           </div>
 
           {/* Decorative Elements behind image */}
-          <div className="absolute -z-10 -top-5 -right-5 w-24 h-24 bg-blue-500 rounded-full mix-blend-multiply filter blur-2xl opacity-20"></div>
-          <div className="absolute -z-10 -bottom-5 -left-5 w-24 h-24 bg-purple-500 rounded-full mix-blend-multiply filter blur-2xl opacity-20"></div>
+          <div className="absolute -z-10 -top-5 -right-5 w-24 h-24 bg-yellow-500 rounded-full mix-blend-multiply filter blur-2xl opacity-20"></div>
+          <div className="absolute -z-10 -bottom-5 -left-5 w-24 h-24 bg-orange-500 rounded-full mix-blend-multiply filter blur-2xl opacity-20"></div>
         </motion.div>
 
         {/* RIGHT SIDE: Content & Points */}
@@ -112,11 +119,8 @@ const WhoShouldJoinHero = () => {
           <motion.div variants={itemVariants}>
            
             <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight">
-             Who Should <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">join ? </span>
+             Who Should <span className="text-yellow-500">join ?</span>
             </h2>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed">
-              Whether you are starting out or stepping up, our program is designed to bridge the gap between curiosity and career success.
-            </p>
           </motion.div>
 
           {/* Cards Container */}
@@ -132,26 +136,43 @@ const WhoShouldJoinHero = () => {
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-100 text-lg group-hover:text-white transition-colors">{item.title}</h3>
-                  <p className="text-sm text-gray-500 group-hover:text-gray-400 transition-colors">{item.desc}</p>
+                  <h3 className="font-bold text-gray-100 text-lg group-hover:text-yellow-100 transition-colors">{item.title}</h3>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* --- NEW VECTOR DESIGN CTA BUTTON (YELLOW THEME) --- */}
           <motion.div variants={itemVariants} className="mt-4">
-            <button className="group relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-lg hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-950 focus:ring-blue-600 overflow-hidden">
-              <span className="relative z-10">Register for Free Now</span>
-              <ArrowRight className="relative z-10 ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <button 
+              onClick={handleRegisterClick}
+              className="group relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 overflow-hidden rounded-full font-bold text-white shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-yellow-500/40"
+            >
               
-              {/* Shine effect */}
-              <div className="absolute inset-0 -translate-x-full group-hover:animate-[shine_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
+              {/* Background Gradient */}
+              <span className="absolute inset-0 bg-gradient-to-r from-yellow-600 via-amber-600 to-orange-600 transition-all duration-300 group-hover:bg-gradient-to-br"></span>
+              
+              {/* Vector Grid Pattern inside Button */}
+              <span className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(255,255,255,0.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-[size:10px_10px]"></span>
+              
+              {/* Decorative Vector Line/Shape */}
+              <span className="absolute -left-10 -bottom-10 h-32 w-10 rotate-12 bg-white/10 blur-md transition-all duration-500 group-hover:left-[120%]"></span>
+              
+              {/* Button Content */}
+              <div className="relative z-10 flex items-center gap-2">
+                 <span>Register for Free Now</span>
+                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </div>
+
+              {/* Top Highlight border for 3D effect */}
+              <div className="absolute inset-0 rounded-full ring-1 ring-white/20 group-hover:ring-white/40"></div>
             </button>
+
             <p className="mt-4 text-sm text-gray-500 text-center sm:text-left">
               *Limited seats available. No credit card required.
             </p>
           </motion.div>
+
         </motion.div>
 
       </div>
