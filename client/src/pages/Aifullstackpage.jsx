@@ -11,6 +11,9 @@ import ReserveSeatSection from '@/fullstack/Homepage/Reservesection'
 import FAQSection from '@/fullstack/Homepage/Faq'
 import Footer from '@/fullstack/layout/Footer'
 import WhatsAppBtn from '@/fullstack/Homepage/Whatsapp'
+import RegistrationSection from '@/sections/ContactSection'
+import GallerySection from '@/fullstack/Homepage/GallerySection'
+import Achievements from '@/fullstack/Homepage/Achievements'
 
 const Aifullstackpage = () => {
   return (
@@ -21,8 +24,14 @@ const Aifullstackpage = () => {
       <WhyAISection />
       <WhyChooseBM />
       <MasterclassSection />
+      <Achievements/>
       <WhoShouldJoinHero />
       <Mastertamil/>
+      <div className='bg-black text-white'>
+        <RegistrationSection/>
+      <GallerySection/>
+
+      </div>
       <ReserveSeatSection/>
       <FAQSection/>
       <WhatsAppBtn/>

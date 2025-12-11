@@ -47,7 +47,7 @@ export default function RegistrationSection() {
         setForm({ ...form, [field]: value });
     };
 
-   const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Validation: Phone Number
@@ -60,18 +60,18 @@ export default function RegistrationSection() {
         const loadingToast = toast.loading("Reserving your seat...");
 
         const apiUrl = import.meta.env.VITE_BASE_URL;
-        const scriptUrl = "https://script.google.com/macros/s/AKfycby_poutJdYw3AYBdpgdlEi5XQmJKr6psrmnNvYLLO31A95Rv1X4LPaLzHDF8RBBYf0Osw/exec";
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbw7tE1aqw78Ljon-zK8mgKf8uE7e86PDHd0O4XGa1OmEQdwWPzSzKRJ5lTJaXpbm1niHg/exec";
 
         let sheetSuccess = false;
         let emailSuccess = false;
 
         try {
-            // --- CHANGE START: Add the formType 'fsd' here ---
-            // We create a new object combining the form data and the identifier
-            const sheetData = { ...form, formType: "fsd" }; 
+            // --- UPDATED LOGIC HERE ---
+            // We combine the form data with a specific identifier for FSD
+            const sheetData = { ...form, formType: "fsd" };
             
+            // Convert to URLSearchParams for Google Sheets
             const formData = new URLSearchParams(sheetData);
-            // --- CHANGE END ---
 
             // 1. Submit to Google Sheet
             try {
@@ -84,10 +84,9 @@ export default function RegistrationSection() {
                 console.error("Sheet Error:", error);
             }
 
-            // 2. Submit Email 
-            // (Note: If your email backend needs to know this is FSD, send sheetData instead of form)
+            // 2. Submit Email
             try {
-                const emailResponse = await axios.post(`${apiUrl}/webinarfsd/send-email-fsd`, form, { timeout: 15000 });
+                const emailResponse = await axios.post(`${apiUrl}/mail/send-email`, form, { timeout: 15000 });
                 if (emailResponse.status === 200) emailSuccess = true;
             } catch (error) {
                 console.error("Email Error:", error);
@@ -133,18 +132,12 @@ export default function RegistrationSection() {
     };
 
     return (
-        // --- CHANGED: Added bg-black and relative positioning for vector background ---
         <section className="relative w-full bg-black py-20 overflow-hidden" id="contact">
             
-            {/* --- NEW: Background Vector & Effects --- */}
+            {/* Background Vector & Effects */}
             <div className="absolute inset-0 pointer-events-none">
-                {/* 1. Subtle Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-                
-                {/* 2. Top Center Light Glow (Spotlight) */}
                 <div className="absolute left-0 right-0 top-[-10%] h-[500px] w-full bg-yellow-500/10 blur-[120px] rounded-full mx-auto max-w-3xl"></div>
-
-                {/* 3. The "Light Vector" SVG Curve */}
                 <svg className="absolute top-0 left-0 w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
                     <path 
                         d="M0 100 C 20 0 50 0 100 100 Z" 
@@ -157,19 +150,19 @@ export default function RegistrationSection() {
                         fill="none" 
                         stroke="url(#gradient)" 
                         strokeWidth="0.5" 
-                        className="path-animate" // You can add CSS animation here if desired
+                        className="path-animate"
                     />
                     <defs>
                         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="transparent" />
-                            <stop offset="50%" stopColor="#EAB308" /> {/* Yellow-500 */}
+                            <stop offset="50%" stopColor="#EAB308" />
                             <stop offset="100%" stopColor="transparent" />
                         </linearGradient>
                     </defs>
                 </svg>
             </div>
 
-            {/* Content Container (z-10 to sit above background) */}
+            {/* Content Container */}
             <div className="relative z-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
                 <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
 
@@ -188,7 +181,7 @@ export default function RegistrationSection() {
 
                 <SectionTitle
                     text1="Registration Form"
-                    text2="Save Your Seat – Free Webinar Registration"
+                    text2="Save Your Seat – FSD Webinar"
                     text3="Fill in your details to get the webinar link and WhatsApp reminders."
                 />
 
@@ -271,7 +264,7 @@ export default function RegistrationSection() {
                         viewport={{ once: true }}
                         transition={{ type: "spring", stiffness: 250 }}
                     >
-                        {isSubmitting ? "Submitting..." : "Yes, I Want to Attend the Free Webinar"}
+                        {isSubmitting ? "Submitting..." : "Yes, I Want to Attend"}
                         <ArrowRightIcon className="size-5" />
                     </motion.button>
 
@@ -314,12 +307,11 @@ function InputGlass({ label, placeholder, Icon, type = "text", onChange, value, 
 function SelectGlass({ label, options, Icon, onChange, value, required = false }) {
     return (
         <motion.div
-            className="col-span-1 sm:col-span-2"
+            className="col-span-1 sm:col-span-2 group"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 250 }}
-            className="group sm:col-span-2" // Corrected duplicate className
         >
             <p className="mb-2 font-medium text-sm text-slate-300 group-hover:text-yellow-400 transition-colors">{label}</p>
             <div className="flex items-center pl-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md focus-within:border-yellow-500/50 focus-within:bg-white/10 transition-all duration-300">
