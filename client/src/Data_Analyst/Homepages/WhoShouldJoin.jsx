@@ -9,6 +9,8 @@ import {
   Database
 } from 'lucide-react';
 import Animated from "@/assets/Going up-cuate.png"
+import { Link } from "react-router-dom";
+
 
 const WhoShouldJoinHero = () => {
   // Animation variants
@@ -140,18 +142,23 @@ const WhoShouldJoinHero = () => {
           </div>
 
           {/* CTA Button */}
-          <motion.div variants={itemVariants} className="mt-4">
-            <button className="group relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full hover:shadow-lg hover:shadow-yellow-500/25 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-950 focus:ring-yellow-500 overflow-hidden">
-              <span className="relative z-10">Register for Free Now</span>
-              <ArrowRight className="relative z-10 ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          {/* CTA Button */}
+<motion.div variants={itemVariants} className="mt-4 relative">
+  <a
+  href='#contact'
+  className="group relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full hover:shadow-lg hover:shadow-yellow-500/25"
+>
+  <span className="relative z-10">Register for Free Now</span>
+  <ArrowRight className="relative z-10 ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+  <div className="absolute inset-0 -translate-x-full group-hover:animate-[shine_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
+</a>
 
-              {/* Shine effect */}
-              <div className="absolute inset-0 -translate-x-full group-hover:animate-[shine_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
-            </button>
-            <p className="mt-4 text-sm text-gray-500 text-center sm:text-left">
-              *Limited seats available. No credit card required.
-            </p>
-          </motion.div>
+
+  <p className="mt-4 text-sm text-gray-500 text-center sm:text-left">
+    *Limited seats available. No credit card required.
+  </p>
+</motion.div>
+
         </motion.div>
 
       </div>
