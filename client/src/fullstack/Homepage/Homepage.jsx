@@ -98,18 +98,52 @@ const HeroSection = () => {
           <div className="p-6 space-y-5">
             <div className="space-y-3">
               {[
-                { date: "Dec 13, 2025", time: "Saturday • 4:30 PM – 6:00 PM" },
-                { date: "Dec 27, 2025", time: "Sunday • 4:30 PM – 6:00 PM" }
-              ].map((batch, idx) => (
-                <div key={idx} className="group flex items-center gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-yellow-500/30 transition-colors cursor-default">
-                  <div className="bg-white/10 p-2 rounded-lg text-slate-300 group-hover:text-yellow-400 group-hover:bg-yellow-500/10 transition-colors">
-                    <Calendar size={20} />
-                  </div>
-                  <div>
-                    <p className="text-white font-medium">{batch.date}</p>
-                    <p className="text-xs text-slate-500">{batch.time}</p>
-                  </div>
-                </div>
+  { 
+    date: "Dec 13, 2025", 
+    time: "Saturday • 4:30 PM – 6:00 PM",
+    completed: true
+  },
+  { 
+    date: "Dec 27, 2025", 
+    time: "Sunday • 4:30 PM – 6:00 PM",
+    completed: false
+  }
+]
+.map((batch, idx) => (
+                <div
+  key={idx}
+  className={`flex items-center justify-between gap-4 p-3 rounded-xl border transition-colors
+    ${
+      batch.completed
+        ? "bg-white/[0.02] border-green-500/20 opacity-60 cursor-not-allowed pointer-events-none"
+        : "group bg-white/[0.03] border-white/5 hover:border-yellow-500/30 cursor-default"
+    }`}
+>
+  <div className="flex items-center gap-4">
+    <div
+      className={`p-2 rounded-lg transition-colors
+        ${
+          batch.completed
+            ? "bg-green-500/10 text-green-400"
+            : "bg-white/10 text-slate-300 group-hover:text-yellow-400 group-hover:bg-yellow-500/10"
+        }`}
+    >
+      <Calendar size={20} />
+    </div>
+
+    <div>
+      <p className="text-white font-medium">{batch.date}</p>
+      <p className="text-xs text-slate-500">{batch.time}</p>
+    </div>
+  </div>
+
+  {batch.completed && (
+    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-green-500/15 text-green-400 border border-green-500/30">
+      Completed
+    </span>
+  )}
+</div>
+
               ))}
             </div>
 

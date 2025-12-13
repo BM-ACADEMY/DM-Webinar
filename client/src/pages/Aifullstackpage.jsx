@@ -14,6 +14,7 @@ import WhatsAppBtn from '@/fullstack/Homepage/Whatsapp'
 import GallerySection from '@/fullstack/Homepage/GallerySection'
 import Achievements from '@/fullstack/Homepage/Achievements'
 import RegistrationSection from '@/fullstack/Homepage/Enquriyform'
+import Certificate from '@/fullstack/Homepage/Certificate'
 
 const Aifullstackpage = () => {
   return (
@@ -33,6 +34,7 @@ const Aifullstackpage = () => {
 
       </div>
       <ReserveSeatSection/>
+      <Certificate/>
       <FAQSection/>
       <WhatsAppBtn/>
       <Footer/>

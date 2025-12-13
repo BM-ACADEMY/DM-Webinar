@@ -12,7 +12,7 @@ export const courseData = [
     },
     {
         icon: toolsImg,
-        title: "Full AI + Marketing Stack",
+        title: "Full AI + Marketing",
         description: "AI tools, SEO, Social Media, Paid Ads, Automations & more."
     },
     {

@@ -44,7 +44,7 @@ export default function HeroSection() {
         transition={{ duration: 0.8 }}
       >
         <span className="inline-block py-1 px-3 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs sm:text-sm font-semibold mb-4 tracking-wide uppercase">
-          <span className="animate-pulse mr-2">●</span> Live Webinar
+          <span className="animate-pulse mr-2">●</span> Live Masterclass
         </span>
 
         <div className="max-w-5xl mx-auto text-center">
@@ -145,30 +145,40 @@ export default function HeroSection() {
     <div className="p-6 space-y-5">
       {/* Dates Selection Visual */}
       <div className="space-y-3">
-        <div className="group flex items-center gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-yellow-500/30 transition-colors cursor-default">
-          <div className="bg-white/10 p-2 rounded-lg text-slate-300 group-hover:text-yellow-400 group-hover:bg-yellow-500/10 transition-colors">
-            <Calendar size={20} />
-          </div>
-          <div>
-            <p className="text-white font-medium">Dec 06, 2025</p>
-            <p className="text-xs text-slate-500">
-              Saturday • 4:30 PM – 6:00 PM
-            </p>
-          </div>
-        </div>
-
-        <div className="group flex items-center gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-yellow-500/30 transition-colors cursor-default">
-          <div className="bg-white/10 p-2 rounded-lg text-slate-300 group-hover:text-yellow-400 group-hover:bg-yellow-500/10 transition-colors">
-            <Calendar size={20} />
-          </div>
-          <div>
-            <p className="text-white font-medium">Dec 27, 2025</p>
-            <p className="text-xs text-slate-500">
-              Sunday • 4:30 PM – 6:00 PM
-            </p>
-          </div>
-        </div>
+  {/* ✅ Completed Event */}
+  <div className="flex items-center justify-between gap-4 p-3 rounded-xl bg-white/[0.02] border border-green-500/20 opacity-60 cursor-not-allowed pointer-events-none">
+    <div className="flex items-center gap-4">
+      <div className="bg-green-500/10 p-2 rounded-lg text-green-400">
+        <Calendar size={20} />
       </div>
+      <div>
+        <p className="text-white font-medium">Dec 06, 2025</p>
+        <p className="text-xs text-slate-500">
+          Saturday • 4:30 PM – 6:00 PM
+        </p>
+      </div>
+    </div>
+
+    {/* Green Badge */}
+    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-green-500/15 text-green-400 border border-green-500/30">
+      Completed
+    </span>
+  </div>
+
+  {/* 🔔 Upcoming Event */}
+  <div className="group flex items-center gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-yellow-500/30 transition-colors cursor-default">
+    <div className="bg-white/10 p-2 rounded-lg text-slate-300 group-hover:text-yellow-400 group-hover:bg-yellow-500/10 transition-colors">
+      <Calendar size={20} />
+    </div>
+    <div>
+      <p className="text-white font-medium">Dec 27, 2025</p>
+      <p className="text-xs text-slate-500">
+        Sunday • 4:30 PM – 6:00 PM
+      </p>
+    </div>
+  </div>
+</div>
+
 
       {/* Details Grid */}
       <div className="grid grid-cols-2 gap-3 pt-2">
@@ -222,7 +232,7 @@ export default function HeroSection() {
           <div className="absolute -inset-3 rounded-xl bg-yellow-400 opacity-20 group-hover:opacity-40 blur-lg transition-opacity duration-200" />
 
           <span className="relative flex items-center gap-2">
-           Register for the Free Al + Digital Marketing Webinar
+           Register for the Free Al + Digital Marketing Masterclass
             {/* <CheckCircle2 size={20} /> */}
           </span>
         </a>
