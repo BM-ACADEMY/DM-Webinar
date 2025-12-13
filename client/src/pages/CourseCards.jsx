@@ -1,90 +1,123 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import Image1 from "../assets/vector/Coding workshop-rafiki.png"
+import Image2 from "../assets/vector/Marketing-bro.png"
+import Image3 from "../assets/vector/Research paper-rafiki.png"
 
 export default function HomePage() {
   
   const courses = [
     {
       id: 1,
-      title: "Digital Marketing",
-      // CHANGED: New, reliable image URL for Digital Marketing
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+      idLabel: "01_", 
+      title: "AI Digital Marketing",
+      // CHANGED: 3D Illustration style (Rocket/Growth Concept)
+      image: Image2,
       path: "/digital-marketing", 
       desc: "Master SEO, social media strategies, and online growth."
     },
     {
       id: 2,
+      idLabel: "02_",
       title: "AI Full Stack Development",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+      // CHANGED: 3D Illustration style (Abstract Code/Tech Nodes)
+      image: Image1,
       path: "/ai-fullstack-development",
       desc: "Build modern web apps using React, Node, and AI tools."
     },
     {
       id: 3,
+      idLabel: "03_",
       title: "AI Data Analyst",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+      // CHANGED: 3D Illustration style (Data Cubes/Analytics)
+      image: Image3,
       path: "/Data_Analyst",
       desc: "Analyze complex data and build predictive AI models."
     }
   ];
 
   return (
-    // CHANGED: selection color to yellow
-    <div className="min-h-screen bg-black text-white relative selection:bg-yellow-500 selection:text-black font-sans">
+    <div className="min-h-screen bg-[#5e5a5a] text-white relative selection:bg-yellow-500 selection:text-black font-sans overflow-hidden">
       
-      {/* --- VECTOR BACKGROUND EFFECT --- */}
+      {/* --- BACKGROUND EFFECT (Cyber Grid) --- */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-        {/* CHANGED: Glow effects to warm yellow/orange */}
-        <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-yellow-900/20 via-orange-900/20 to-transparent blur-3xl"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#2a2a2a_1px,transparent_1px),linear-gradient(to_bottom,#2a2a2a_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
+        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-yellow-600/10 blur-[120px]"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
       </div>
 
       {/* --- MAIN CONTENT --- */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div className="relative z-10 max-w-7xl px-6 py-20">
         
-        {/* CHANGED: Title gradient to yellow/orange */}
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">
-          Choose Your Path
+        <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-20">
+          <span className="text-yellow-400 ">
+            Choose Your Path
+          </span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           
           {courses.map((course) => (
             <Link 
               to={course.path} 
               key={course.id}
-              // CHANGED: Hover border color to yellow and shadow glow to yellow rgb(234,179,8)
-              className="group relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(234,179,8,0.15)]"
+              className="group relative block h-full"
             >
-              {/* Image Container */}
-              <div className="h-56 overflow-hidden relative">
-                <img 
-                  src={course.image} 
-                  alt={course.title} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                {/* Dark Gradient Overlay over image */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-80"></div>
-              </div>
-
-              {/* Card Content */}
-              <div className="p-6 relative">
-                {/* CHANGED: Hover text color to yellow */}
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">
-                  {course.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                  {course.desc}
-                </p>
+              {/* TECH SHAPE CONTAINER */}
+              <div className="relative h-full bg-gradient-to-b from-gray-800 to-gray-900 p-[1px] transition-all duration-300 group-hover:from-yellow-400 group-hover:to-orange-600 [clip-path:polygon(0_0,100%_0,100%_calc(100%-25px),calc(100%-25px)_100%,0_100%)] shadow-2xl">
                 
-                {/* CHANGED: Base text color to yellow-500 */}
-                <div className="flex items-center text-sm font-medium text-yellow-500">
-                  <span className="group-hover:mr-2 transition-all">Explore Course</span>
-                  <svg className="w-4 h-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
+                {/* INNER CARD CONTENT */}
+                <div className="relative h-full bg-[#0a0a0a] [clip-path:polygon(0_0,100%_0,100%_calc(100%-25px),calc(100%-25px)_100%,0_100%)]">
+                  
+                  {/* --- IMAGE CONTAINER --- */}
+                  <div className="h-64 overflow-hidden relative border-b border-gray-800 group-hover:border-yellow-500/30 transition-colors">
+                    {/* Updated Image Style: 3D Illustration */}
+                    <img 
+                      src={course.image} 
+                      alt={course.title} 
+                      className="w-full h-full object-cover opacity-80 hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out"
+                    />
+                    
+                    {/* Tech Overlays */}
+                    <div className="absolute inset-0 bg-[linear-gradient(transparent_2px,#000_3px)] bg-[size:100%_4px] opacity-15 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
+                    
+                   
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="p-6 pt-10 relative">
+                    
+                    {/* ID LABEL */}
+                    <div className="absolute top-60 left-6 bg-[#0a0a0a] border border-gray-700 px-3 py-1 text-xs font-mono text-yellow-500 shadow-xl group-hover:bg-yellow-500 group-hover:text-black group-hover:border-yellow-500 transition-all duration-300">
+                      {course.idLabel}
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
+                      {course.title}
+                    </h3>
+                    
+                    <p className="text-gray-400 text-sm mb-8 leading-relaxed border-l-2 border-gray-800 pl-4 group-hover:border-yellow-500 transition-colors">
+                      {course.desc}
+                    </p>
+                    
+                    {/* Tech Footer */}
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-900">
+                      <div className="flex items-center text-[10px] font-mono text-gray-400 group-hover:text-yellow-500 transition-colors uppercase tracking-widest">
+                        <span>Lear_more</span>
+                      </div>
+                      
+                      <div className="h-8 w-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-gray-400 group-hover:border-yellow-500 group-hover:text-yellow-500 transition-all duration-300">
+                         <span className="text-xl leading-none mb-1">&rsaquo;</span>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
+              
+              {/* Outer Glow on Hover */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-lg blur opacity-0 group-hover:opacity-40 transition duration-500 -z-10"></div>
             </Link>
           ))}
 

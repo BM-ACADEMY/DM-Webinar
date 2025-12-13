@@ -2,9 +2,9 @@ import { ArrowRightIcon, MailIcon, UserIcon, PhoneIcon, MapPinIcon, CalendarIcon
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
-import Confetti from "react-confetti";
-import SectionTitle from "../components/SectionTitle";
+import toast, { Toaster } from "react-hot-toast"; 
+import Confetti from "react-confetti"; 
+import SectionTitle from "../../components/SectionTitle";
 
 // Helper hook to get window size for Confetti
 function useWindowSize() {
@@ -16,12 +16,13 @@ function useWindowSize() {
     useEffect(() => {
         function handleResize() {
             setWindowSize({
+                // Use clientWidth to exclude scrollbar width and prevent X overflow
                 width: document.documentElement.clientWidth,
                 height: window.innerHeight,
             });
         }
         window.addEventListener("resize", handleResize);
-        handleResize();
+        handleResize(); // Call immediate
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
@@ -29,8 +30,8 @@ function useWindowSize() {
 }
 
 export default function RegistrationSection() {
-    const { width, height } = useWindowSize();
-    const [showConfetti, setShowConfetti] = useState(false);
+    const { width, height } = useWindowSize(); 
+    const [showConfetti, setShowConfetti] = useState(false); 
 
     const [form, setForm] = useState({
         name: "",
@@ -60,18 +61,13 @@ export default function RegistrationSection() {
         const loadingToast = toast.loading("Reserving your seat...");
 
         const apiUrl = import.meta.env.VITE_BASE_URL;
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbw7tE1aqw78Ljon-zK8mgKf8uE7e86PDHd0O4XGa1OmEQdwWPzSzKRJ5lTJaXpbm1niHg/exec";
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbzCCtAecM5yZOWjiPhkonAzKIFw2d24-DfGereQYB-Hztgixk1qErOnbkejYDzxl-E/exec";
 
         let sheetSuccess = false;
         let emailSuccess = false;
 
         try {
-            // --- UPDATED LOGIC HERE ---
-            // We combine the form data with a specific identifier for FSD
-            const sheetData = { ...form, formType: "fsd" };
-            
-            // Convert to URLSearchParams for Google Sheets
-            const formData = new URLSearchParams(sheetData);
+            const formData = new URLSearchParams(form);
 
             // 1. Submit to Google Sheet
             try {
@@ -92,7 +88,8 @@ export default function RegistrationSection() {
                 console.error("Email Error:", error);
             }
 
-            toast.dismiss(loadingToast);
+            // Handle Results
+            toast.dismiss(loadingToast); 
 
             if (sheetSuccess && emailSuccess) {
                 toast.success("Registration Successful!");
@@ -116,6 +113,7 @@ export default function RegistrationSection() {
 
     const triggerConfetti = () => {
         setShowConfetti(true);
+        // Stop confetti after 6 seconds
         setTimeout(() => setShowConfetti(false), 6000);
     };
 
@@ -132,148 +130,119 @@ export default function RegistrationSection() {
     };
 
     return (
-        <section className="relative w-full bg-black py-20 overflow-hidden" id="contact">
+        <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 pt-0 relative overflow-x-hidden" id="contact">
             
-            {/* Background Vector & Effects */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-                <div className="absolute left-0 right-0 top-[-10%] h-[500px] w-full bg-yellow-500/10 blur-[120px] rounded-full mx-auto max-w-3xl"></div>
-                <svg className="absolute top-0 left-0 w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path 
-                        d="M0 100 C 20 0 50 0 100 100 Z" 
-                        fill="none" 
-                        stroke="url(#gradient)" 
-                        strokeWidth="0.5"
+            {/* Toast Container */}
+            <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
+
+            {/* Confetti Overlay - Fixed to screen, no overflow, clicks pass through */}
+            {showConfetti && (
+                <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
+                    <Confetti
+                        width={width}
+                        height={height}
+                        recycle={false}
+                        numberOfPieces={500}
+                        gravity={0.2}
+                        style={{ position: 'fixed', top: 0, left: 0 }}
                     />
-                    <path 
-                        d="M0 100 C 50 20 80 50 100 0" 
-                        fill="none" 
-                        stroke="url(#gradient)" 
-                        strokeWidth="0.5" 
-                        className="path-animate"
-                    />
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="transparent" />
-                            <stop offset="50%" stopColor="#EAB308" />
-                            <stop offset="100%" stopColor="transparent" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
+                </div>
+            )}
 
-            {/* Content Container */}
-            <div className="relative z-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
-                <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
+            <SectionTitle
+                text1="Registration Form"
+                text2="Save Your Seat – Free Webinar Registration"
+                text3="Fill in your details to get the webinar link and WhatsApp reminders."
+            />
 
-                {showConfetti && (
-                    <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
-                        <Confetti
-                            width={width}
-                            height={height}
-                            recycle={false}
-                            numberOfPieces={500}
-                            gravity={0.2}
-                            style={{ position: 'fixed', top: 0, left: 0 }}
-                        />
-                    </div>
-                )}
-
-                <SectionTitle
-                    text1="Registration Form"
-                    text2="Save Your Seat – FSD Webinar"
-                    text3="Fill in your details to get the webinar link and WhatsApp reminders."
+            <form
+                onSubmit={handleSubmit}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto text-slate-100 mt-12 w-full"
+            >
+                <InputGlass
+                    label="Full Name *"
+                    placeholder="Enter your full name"
+                    Icon={UserIcon}
+                    onChange={(v) => handleChange("name", v)}
+                    value={form.name}
+                    required
                 />
 
-                <form
-                    onSubmit={handleSubmit}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto text-slate-100 mt-12 w-full backdrop-blur-sm p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl bg-black/40"
+                <InputGlass
+                    label="WhatsApp Number *"
+                    placeholder="Enter 10-digit number"
+                    Icon={PhoneIcon}
+                    value={form.phone}
+                    required
+                    onChange={(v) => {
+                        const numericValue = v.replace(/\D/g, '').slice(0, 10);
+                        handleChange("phone", numericValue);
+                    }}
+                    type="tel"
+                />
+
+                <InputGlass
+                    label="Email *"
+                    placeholder="Enter your email"
+                    Icon={MailIcon}
+                    type="email"
+                    onChange={(v) => handleChange("email", v)}
+                    value={form.email}
+                    required
+                />
+
+                <InputGlass
+                    label="City *"
+                    placeholder="Your city"
+                    Icon={MapPinIcon}
+                    onChange={(v) => handleChange("city", v)}
+                    value={form.city}
+                    required
+                />
+
+                <SelectGlass
+                    label="Current Status *"
+                    options={["Student", "Job Seeker", "Working Professional", "Business Owner", "Others"]}
+                    onChange={(v) => handleChange("status", v)}
+                    value={form.status}
+                    required
+                />
+
+                <SelectGlass
+                    label="Preferred Date *"
+                    options={["6 December", "27 December"]}
+                    Icon={CalendarIcon}
+                    onChange={(v) => handleChange("date", v)}
+                    value={form.date}
+                    required
+                />
+
+                <SelectGlass
+                    label="How did you hear about us? *"
+                    options={["Instagram", "WhatsApp", "Friend", "YouTube", "Others"]}
+                    onChange={(v) => handleChange("source", v)}
+                    value={form.source}
+                    required
+                />
+
+                <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="sm:col-span-2 w-full sm:w-max flex items-center justify-center sm:justify-start gap-2 bg-yellow-600 hover:bg-yellow-700 disabled:bg-yellow-500 text-white px-10 py-3 rounded-full mx-auto sm:mx-0"
+                    initial={{ y: 100, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 250 }}
                 >
-                    <InputGlass
-                        label="Full Name *"
-                        placeholder="Enter your full name"
-                        Icon={UserIcon}
-                        onChange={(v) => handleChange("name", v)}
-                        value={form.name}
-                        required
-                    />
+                    {isSubmitting ? "Submitting..." : "Yes, I Want to Attend the Free Webinar"}
+                    <ArrowRightIcon className="size-5" />
+                </motion.button>
 
-                    <InputGlass
-                        label="WhatsApp Number *"
-                        placeholder="Enter 10-digit number"
-                        Icon={PhoneIcon}
-                        value={form.phone}
-                        required
-                        onChange={(v) => {
-                            const numericValue = v.replace(/\D/g, '').slice(0, 10);
-                            handleChange("phone", numericValue);
-                        }}
-                        type="tel"
-                    />
-
-                    <InputGlass
-                        label="Email *"
-                        placeholder="Enter your email"
-                        Icon={MailIcon}
-                        type="email"
-                        onChange={(v) => handleChange("email", v)}
-                        value={form.email}
-                        required
-                    />
-
-                    <InputGlass
-                        label="City *"
-                        placeholder="Your city"
-                        Icon={MapPinIcon}
-                        onChange={(v) => handleChange("city", v)}
-                        value={form.city}
-                        required
-                    />
-
-                    <SelectGlass
-                        label="Current Status *"
-                        options={["Student", "Job Seeker", "Working Professional", "Business Owner", "Others"]}
-                        onChange={(v) => handleChange("status", v)}
-                        value={form.status}
-                        required
-                    />
-
-                    <SelectGlass
-                        label="Preferred Date *"
-                        options={["6 December", "27 December"]}
-                        Icon={CalendarIcon}
-                        onChange={(v) => handleChange("date", v)}
-                        value={form.date}
-                        required
-                    />
-
-                    <SelectGlass
-                        label="How did you hear about us? *"
-                        options={["Instagram", "WhatsApp", "Friend", "YouTube", "Others"]}
-                        onChange={(v) => handleChange("source", v)}
-                        value={form.source}
-                        required
-                    />
-
-                    <motion.button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="sm:col-span-2 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold px-10 py-4 rounded-xl shadow-lg shadow-yellow-500/20 transition-all transform hover:scale-[1.02]"
-                        initial={{ y: 20, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 250 }}
-                    >
-                        {isSubmitting ? "Submitting..." : "Yes, I Want to Attend"}
-                        <ArrowRightIcon className="size-5" />
-                    </motion.button>
-
-                    <p className="text-xs text-slate-500 sm:col-span-2 mt-2 text-center">
-                        We respect your privacy. Your details will only be used for webinar updates.
-                    </p>
-                </form>
-            </div>
-        </section>
+                <p className="pl-10 text-xs sm:text-sm text-slate-400 sm:col-span-2 mt-2 text-center sm:text-left">
+                    We respect your privacy. Your details will only be used for webinar updates and course information.
+                </p>
+            </form>
+        </div>
     );
 }
 
@@ -281,22 +250,21 @@ export default function RegistrationSection() {
 function InputGlass({ label, placeholder, Icon, type = "text", onChange, value, required = false }) {
     return (
         <motion.div
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 120, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 250 }}
-            className="group"
         >
-            <p className="mb-2 font-medium text-sm text-slate-300 group-hover:text-yellow-400 transition-colors">{label}</p>
-            <div className="flex items-center pl-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md focus-within:border-yellow-500/50 focus-within:bg-white/10 transition-all duration-300">
-                <Icon className="size-5 text-slate-400 group-focus-within:text-yellow-400 transition-colors" />
+            <p className="mb-1 font-medium text-sm sm:text-base">{label}</p>
+            <div className="flex items-center pl-3 rounded-xl border border-white/20 bg-white/5 backdrop-blur-lg focus-within:border-yellow-400 transition">
+                <Icon className="size-5 opacity-70" />
                 <input
                     type={type}
                     placeholder={placeholder}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     required={required}
-                    className="w-full p-3.5 bg-transparent outline-none text-slate-100 placeholder-slate-500 text-sm font-light"
+                    className="w-full p-3 bg-transparent outline-none text-slate-100 placeholder-slate-400 text-sm sm:text-base"
                 />
             </div>
         </motion.div>
@@ -307,25 +275,25 @@ function InputGlass({ label, placeholder, Icon, type = "text", onChange, value, 
 function SelectGlass({ label, options, Icon, onChange, value, required = false }) {
     return (
         <motion.div
-            className="col-span-1 sm:col-span-2 group"
-            initial={{ y: 20, opacity: 0 }}
+            className="col-span-1 sm:col-span-2"
+            initial={{ y: 120, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 250 }}
         >
-            <p className="mb-2 font-medium text-sm text-slate-300 group-hover:text-yellow-400 transition-colors">{label}</p>
-            <div className="flex items-center pl-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md focus-within:border-yellow-500/50 focus-within:bg-white/10 transition-all duration-300">
-                {Icon && <Icon className="size-5 text-slate-400 group-focus-within:text-yellow-400 transition-colors" />}
+            <p className="mb-1 font-medium text-sm sm:text-base">{label}</p>
+            <div className="flex items-center pl-3 rounded-xl border border-white/20 bg-white/5 backdrop-blur-lg focus-within:border-yellow-400 transition">
+                {Icon && <Icon className="size-5 opacity-70" />}
                 <select
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     required={required}
                     style={{ colorScheme: "dark" }}
-                    className="w-full p-3.5 bg-transparent outline-none text-slate-100 text-sm cursor-pointer [&>option]:bg-black [&>option]:text-slate-200"
+                    className="w-full p-3 bg-transparent outline-none text-slate-100 text-sm sm:text-base cursor-pointer"
                 >
-                    <option value="" className="text-slate-500">Select an option</option>
+                    <option value="" className="text-slate-400 bg-neutral-900">Select an option</option>
                     {options.map((opt, i) => (
-                        <option key={i} value={opt}>
+                        <option key={i} className="bg-neutral-900 text-white" value={opt}>
                             {opt}
                         </option>
                     ))}

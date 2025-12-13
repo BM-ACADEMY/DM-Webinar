@@ -11,9 +11,9 @@ import ReserveSeatSection from '@/fullstack/Homepage/Reservesection'
 import FAQSection from '@/fullstack/Homepage/Faq'
 import Footer from '@/fullstack/layout/Footer'
 import WhatsAppBtn from '@/fullstack/Homepage/Whatsapp'
-import RegistrationSection from '@/sections/ContactSection'
 import GallerySection from '@/fullstack/Homepage/GallerySection'
 import Achievements from '@/fullstack/Homepage/Achievements'
+import RegistrationSection from '@/fullstack/Homepage/Enquriyform'
 
 const Aifullstackpage = () => {
   return (

@@ -61,7 +61,7 @@ export default function RegistrationSection() {
         const loadingToast = toast.loading("Reserving your seat...");
 
         const apiUrl = import.meta.env.VITE_BASE_URL;
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbxGYJXBj65ZehEVarpUJPvQ5ywCv57AH4ap34_iRIhqbDOpBDmhlMo14ifPJTVg4iPICQ/exec";
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbxXoJrKYpM5MZGA0z-JXTYEIcdeocVoKqOsM2-gJ6Wn2YHG4xVK-NGoBuBAyBmDiSid/exec";
 
         let sheetSuccess = false;
         let emailSuccess = false;

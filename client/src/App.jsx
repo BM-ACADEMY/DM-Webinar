@@ -13,8 +13,6 @@ export default function App() {
                 <Route path="/ai-fullstack-development" element={<Aifullstackpage />} />
                 <Route path="/Data_Analyst" element={<Data_Analyst />} />
                 <Route path="/digital-marketing" element={<HomePage />} />
-
-                {/* Added new route */}
             </Routes>
         </>
     );
