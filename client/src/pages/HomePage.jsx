@@ -11,6 +11,7 @@ import Achievements from "../sections/Achievements";
 import WhatsAppBtn from "../sections/WhatsAppBtn";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Certificate from "@/sections/Certificate";
 
 export default function HomePage() {
   return (
@@ -26,6 +27,7 @@ export default function HomePage() {
       <GallerySection />
       <AfterRegistrationSection />
       <WhatsAppBtn />
+      <Certificate/>
       <FAQSection />
       <Footer />
       {/* <CTASection /> */}

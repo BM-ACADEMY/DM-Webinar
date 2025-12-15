@@ -47,9 +47,9 @@ export default function HomePage() {
       </div>
 
       {/* --- MAIN CONTENT --- */}
-      <div className="relative z-10 max-w-7xl px-6 py-20">
+      <div className="relative mx-auto z-10 max-w-7xl px-6 py-20">
         
-        <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-20">
+        <h2 className="text-3xl md:text-6xl text-center font-black uppercase tracking-tighter mb-20">
           <span className="text-yellow-400 ">
             Choose Your Path
           </span>

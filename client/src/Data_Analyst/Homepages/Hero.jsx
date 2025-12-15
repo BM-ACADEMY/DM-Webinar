@@ -8,7 +8,7 @@ import {
 import { motion } from 'framer-motion';
 import { AiOutlineCalendar } from 'react-icons/ai';
 
-import ConfettiEffect from '../../components/ConfettiEffect';
+// import ConfettiEffect from '../../components/ConfettiEffect'; // Uncomment if you have this component
 
 /* -------------------- Animation Variants -------------------- */
 const contentVariants = {
@@ -47,7 +47,7 @@ export default function HeroSection() {
       date: 'Dec 06, 2025',
       day: 'Saturday',
       time: '4:30 PM – 6:00 PM',
-      completed: true, // ✅ COMPLETED
+      completed: true, 
     },
     {
       date: 'Dec 27, 2025',
@@ -77,38 +77,54 @@ export default function HeroSection() {
       role="region"
       aria-label="Masterclass Hero Section"
     >
-      <ConfettiEffect />
+      {/* <ConfettiEffect /> */}
 
       {/* Background */}
       <div
         className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"
-        role="presentation"
       />
       <div
         className="absolute top-20 left-1/2 -translate-x-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-yellow-600/20 blur-[100px] rounded-full pointer-events-none"
-        role="presentation"
       />
 
       {/* Heading */}
       <motion.div
-        className="text-center z-10"
+        className="text-center z-10 relative"
         initial="hidden"
         whileInView="visible"
         variants={contentVariants}
         viewport={{ once: true }}
       >
-        <span className="inline-block py-1 px-3 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs font-semibold mb-4 uppercase">
+        <span
+          className="inline-block py-1 px-3 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs sm:text-sm font-semibold mb-4 tracking-wide uppercase"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <span className="animate-pulse mr-2" aria-hidden="true">
+            ●
+          </span>{' '}
           FREE Masterclass
         </span>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
-          Why Choose{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-400">
-            AI + Data Analytics
-          </span>{' '}
-          as Your Career?
-        </h1>
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
+            Why Choose{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-400">
+              AI + Data Analytics{' '}
+            </span>
+            as Your Career?
+          </h1>
+        </div>
+
+        <p className="mt-6 text-slate-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          Discover how <span className="text-yellow-500">BM Academy</span> can
+          launch your future in the{' '}
+          <span className="text-yellow-500">fastest-growing tech field</span> —
+          with real skills, practical training, and a roadmap to secure a
+          high-paying job, freelance work, or business growth.
+        </p>
       </motion.div>
+
 
       {/* Card */}
       <motion.div
@@ -118,13 +134,43 @@ export default function HeroSection() {
         variants={cardVariants}
         viewport={{ once: true }}
       >
-        <div className="bg-[#121212] border border-white/10 rounded-3xl overflow-hidden">
+        {/* ADDED 'relative' HERE SO RIBBON STAYS INSIDE */}
+        <div className="relative bg-[#121212] border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-yellow-900/10">
+          
+          {/* --- RESTORED: RIBBON START --- */}
+          <div className="absolute -top-3 -right-1 w-32 h-32 overflow-hidden z-20 pointer-events-none">
+            <div className="absolute top-[22px] -right-[42px] w-[150px] transform rotate-45 bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 text-center py-1.5 shadow-lg border-y-2 border-yellow-300/50">
+              <div className="flex flex-col leading-none text-white items-center justify-center -ml-1">
+                <span className="text-[10px] font-semibold opacity-90 line-through decoration-red-500 decoration-[1.5px]">
+                  100%
+                </span>
+                <span className="text-md font-black tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+                  FREE
+                </span>
+              </div>
+              <div className="absolute inset-0 bg-white/20 skew-x-12 opacity-30"></div>
+            </div>
+          </div>
+          {/* --- RIBBON END --- */}
+          
+          
           {/* Header */}
           <div className="bg-white/5 p-4 border-b border-white/5 flex items-center gap-4">
-            <AiOutlineCalendar className="text-yellow-500 text-xl" />
-            <h2 className="font-bold tracking-wide text-sm uppercase text-yellow-400">
-              Upcoming Batches
-            </h2>
+             {/* --- RESTORED: DOTS START --- */}
+             <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-[#FF5F57] shadow-sm"></div>
+              <div className="w-3 h-3 rounded-full bg-[#FEBC2E] shadow-sm"></div>
+              <div className="w-3 h-3 rounded-full bg-[#28C840] shadow-sm"></div>
+            </div>
+            <div className="h-4 w-[1px] bg-white/10"></div>
+            {/* --- DOTS END --- */}
+
+            <div className="flex items-center gap-2">
+                <AiOutlineCalendar className="text-yellow-500 text-xl" />
+                <h2 className="font-bold tracking-wide text-sm uppercase text-yellow-400">
+                Upcoming Batches
+                </h2>
+            </div>
           </div>
 
           {/* Batch List */}
@@ -137,7 +183,7 @@ export default function HeroSection() {
                     ${
                       batch.completed
                         ? 'bg-white/[0.02] border-green-500/20 opacity-60 cursor-not-allowed pointer-events-none'
-                        : 'bg-white/[0.03] border-white/5'
+                        : 'bg-white/[0.03] border-white/5 hover:border-yellow-500/30 transition-colors'
                     }`}
                 >
                   <div className="flex items-center gap-4">
@@ -189,7 +235,7 @@ export default function HeroSection() {
 
             {/* Bonus */}
             <div className="flex gap-3 bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-lg">
-              <Gift className="text-yellow-500" size={18} />
+              <Gift className="text-yellow-500 shrink-0" size={18} />
               <p className="text-sm text-yellow-100">
                 <span className="font-bold">Bonus:</span> Certificate + career roadmap + special offer
               </p>

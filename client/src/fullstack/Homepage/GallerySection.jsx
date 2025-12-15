@@ -4,19 +4,15 @@ import { motion, AnimatePresence } from "motion/react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // Install react-icons if needed
 
 // Image Imports
-import img1 from "../../assets/DM/IMG-20251031-WA0004.jpg";
-import img2 from "../../assets/DM/IMG-20251031-WA0005.jpg";
-import img3 from "../../assets/DM/DM_1.jpg";
-import img4 from "../../assets/DM/DM_2.jpg";
-import img5 from "../../assets/DM/IMG-20251031-WA0003.jpg";
-import img6 from "../../assets/gallery/image1.jpg";
-import img7 from "../../assets/gallery/image2.jpg";
-import img8 from "../../assets/gallery/image3.jpg";
-import img9 from "../../assets/gallery/image4.jpg";
+import img1 from "../../assets/gallery/fsd1.jpg";
+import img2 from "../../assets/gallery/fsd2.jpg";
+import img3 from "../../assets/gallery/fsd3.jpg";
+import img4 from "../../assets/gallery/fsd4.jpg";
+import img5 from "../../assets/gallery/fsd5.jpg";
 
 export default function GallerySection() {
     // 1. All images in one array
-    const allImages = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
+    const allImages = [img2, img5, img1, img4, img3];
 
     // 2. Pagination Logic
     const [currentPage, setCurrentPage] = useState(1);

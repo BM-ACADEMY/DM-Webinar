@@ -76,7 +76,7 @@ export default function Achievements() {
             {/* Content Wrapper */}
             <div className="relative z-10">
                 <SectionTitle
-                    text1="Our Achievementss"
+                    text1="Our Achievements"
                 />
 
                 <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16">

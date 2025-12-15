@@ -1,5 +1,5 @@
 import { FloatingWhatsApp } from "react-floating-whatsapp";
-import logo from "../assets/Course/BM_ACADEMY-.png"; // Make sure to import your logo here
+import logo from "@/assets/Course/BM_ACADEMY-.png"; // Make sure to import your logo here
 
 export default function WhatsAppBtn() {
   return (
@@ -8,7 +8,7 @@ export default function WhatsAppBtn() {
       accountName="BM Academy" // Your Company Name
       avatar={logo} // Your Logo URL or import
       statusMessage="online"
-      chatMessage="Hello! How can we help you with the AI+Digital Marketing?"
+      chatMessage="Hello! How can we help you with the AI+Data Analyst?"
       
       placeholder="Type a message..."
       

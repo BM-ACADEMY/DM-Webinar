@@ -11,7 +11,8 @@ import Contact from '@/Data_Analyst/Homepages/Contact'
 import React from 'react'
 import Footer from '@/components/Footer'
 import Faq from '@/Data_Analyst/Homepages/Faq'
-import WhatsAppBtn from '@/sections/WhatsAppBtn'
+import WhatsAppBtn from '@/Data_Analyst/Homepages/WhatsAppBtn'
+import Certificate from '@/Data_Analyst/Homepages/Certificate'
 
 const Data_Analyst = () => {
   return (
@@ -24,6 +25,7 @@ const Data_Analyst = () => {
       <MasterClassSection />
       <WhoShouldJoin />
       <Contact />
+      <Certificate/>
       <Faq />
       <WhatsAppBtn />
       <Footer />

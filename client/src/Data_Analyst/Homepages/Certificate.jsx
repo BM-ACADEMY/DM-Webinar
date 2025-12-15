@@ -1,10 +1,10 @@
 import React from 'react';
-import Fsd from "@/assets/certificate/FSD.png"; // Your import
+import DA from "@/assets/certificate/DA.png"; // Your import
 
 const certificates = [
   {
     id: 1,
-    image: Fsd, 
+    image: DA, 
     link: "#"
   }
 ];
