@@ -210,7 +210,7 @@ export default function RegistrationSection() {
 
                 <SelectGlass
                     label="Preferred Date *"
-                    options={["6 December", "27 December"]}
+                    options={["27 December"]}
                     Icon={CalendarIcon}
                     onChange={(v) => handleChange("date", v)}
                     value={form.date}

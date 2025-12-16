@@ -13,6 +13,7 @@ import Footer from '@/components/Footer'
 import Faq from '@/Data_Analyst/Homepages/Faq'
 import WhatsAppBtn from '@/Data_Analyst/Homepages/WhatsAppBtn'
 import Certificate from '@/Data_Analyst/Homepages/Certificate'
+import Mastertamil from '@/Data_Analyst/Homepages/Mastertamil'
 
 const Data_Analyst = () => {
   return (
@@ -24,6 +25,7 @@ const Data_Analyst = () => {
       <WhyChoose />
       <MasterClassSection />
       <WhoShouldJoin />
+      <Mastertamil/>
       <Contact />
       <Certificate/>
       <Faq />

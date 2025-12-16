@@ -26,7 +26,7 @@ const Navbar = () => {
   // Navbar items
   const navLinks = [
     { title: "Home", href: "#top" },
-    { title: "Webinar", href: "#webinar" },
+    { title: "Why Choose", href: "#whychoose" },
     { title: "Contact", href: "#contact" },
   ];
 

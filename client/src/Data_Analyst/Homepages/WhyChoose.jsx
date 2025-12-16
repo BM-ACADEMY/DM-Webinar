@@ -6,7 +6,7 @@ const features = [
   {
     icon: <FaTrophy />,
     title: "Proven Results",
-    description: "90%+ placement rate with real companies and freelancing gigs.",
+    description: "90%+ placement rate with real companies and freelancing.",
   },
   {
     icon: <FaChalkboardTeacher />,
@@ -16,7 +16,7 @@ const features = [
   {
     icon: <FaGraduationCap />,
     title: "Beginner Friendly",
-    description: "No prior coding needed—step-by-step guidance in Tamil/Tanglish.",
+    description: "No prior coding needed—step-by-step guidance in Tamil/English.",
   },
   {
     icon: <FaBriefcase />,
@@ -52,7 +52,7 @@ const WhyChooseUs = () => {
   const defaultMessage = "Hi, I'm interested in reserving a seat for the Free Masterclass!";
 
   return (
-    <section className="py-24 bg-gray-950 relative overflow-hidden">
+    <section className="py-24 bg-gray-950 relative overflow-hidden" id='whychoose'> 
 
       {/* --- NEW VECTOR BACKGROUND (Clean Grid) --- */}
       {/* This matches the 'grid' look in your uploaded image */}

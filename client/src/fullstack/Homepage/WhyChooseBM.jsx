@@ -6,7 +6,7 @@ const features = [
   {
     icon: <FaTrophy />,
     title: "Proven Results",
-    description: "90%+ placement rate with real companies and freelancing gigs.",
+    description: "90%+ placement rate with real companies and freelancing.",
   },
   {
     icon: <FaChalkboardTeacher />,

@@ -104,7 +104,7 @@ export default function HomePage() {
                     {/* Tech Footer */}
                     <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-900">
                       <div className="flex items-center text-[10px] font-mono text-gray-400 group-hover:text-yellow-500 transition-colors uppercase tracking-widest">
-                        <span>Lear_more</span>
+                        <span>Learn_more</span>
                       </div>
                       
                       <div className="h-8 w-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-gray-400 group-hover:border-yellow-500 group-hover:text-yellow-500 transition-all duration-300">
