@@ -50,7 +50,7 @@ export default function HeroSection() {
       completed: true, 
     },
     {
-      date: 'Jan 10, 2025',
+      date: 'Jan 10, 2026',
       day: 'Sunday',
       time: '4:30 PM – 6:00 PM',
       completed: false,
