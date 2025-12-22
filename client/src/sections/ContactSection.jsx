@@ -1,46 +1,16 @@
 import { ArrowRightIcon, MailIcon, UserIcon, PhoneIcon, MapPinIcon, CalendarIcon } from "lucide-react";
 import { motion } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"; 
-import Confetti from "react-confetti"; 
 import SectionTitle from "../components/SectionTitle";
-
-// Helper hook to get window size for Confetti
-function useWindowSize() {
-    const [windowSize, setWindowSize] = useState({
-        width: undefined,
-        height: undefined,
-    });
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowSize({
-                // Use clientWidth to exclude scrollbar width and prevent X overflow
-                width: document.documentElement.clientWidth,
-                height: window.innerHeight,
-            });
-        }
-        window.addEventListener("resize", handleResize);
-        handleResize(); // Call immediate
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    return windowSize;
-}
+import { useNavigate } from "react-router-dom"; // <--- Import useNavigate
 
 export default function RegistrationSection() {
-    const { width, height } = useWindowSize(); 
-    const [showConfetti, setShowConfetti] = useState(false); 
-
+    const navigate = useNavigate(); // <--- Initialize Hook
+    
     const [form, setForm] = useState({
-        name: "",
-        phone: "",
-        email: "",
-        city: "",
-        status: "",
-        date: "",
-        source: "",
+        name: "", phone: "", email: "", city: "", status: "", date: "", source: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -93,12 +63,12 @@ export default function RegistrationSection() {
 
             if (sheetSuccess && emailSuccess) {
                 toast.success("Registration Successful!");
-                triggerConfetti();
-                resetForm();
+                setForm({ name: "", phone: "", email: "", city: "", status: "", date: "", source: "" });
+                navigate("/thank-you"); // <--- Navigate on success
             } else if (sheetSuccess || emailSuccess) {
                 toast.success("Registration Saved.");
-                triggerConfetti();
-                resetForm();
+                setForm({ name: "", phone: "", email: "", city: "", status: "", date: "", source: "" });
+                navigate("/thank-you"); // <--- Navigate on partial success
             } else {
                 toast.error("Submission failed. Please check your connection.");
             }
@@ -111,43 +81,10 @@ export default function RegistrationSection() {
         }
     };
 
-    const triggerConfetti = () => {
-        setShowConfetti(true);
-        // Stop confetti after 6 seconds
-        setTimeout(() => setShowConfetti(false), 6000);
-    };
-
-    const resetForm = () => {
-        setForm({
-            name: "",
-            phone: "",
-            email: "",
-            city: "",
-            status: "",
-            date: "",
-            source: "",
-        });
-    };
-
     return (
         <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 pt-0 relative overflow-x-hidden" id="contact">
             
-            {/* Toast Container */}
             <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
-
-            {/* Confetti Overlay - Fixed to screen, no overflow, clicks pass through */}
-            {showConfetti && (
-                <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
-                    <Confetti
-                        width={width}
-                        height={height}
-                        recycle={false}
-                        numberOfPieces={500}
-                        gravity={0.2}
-                        style={{ position: 'fixed', top: 0, left: 0 }}
-                    />
-                </div>
-            )}
 
             <SectionTitle
                 text1="Registration Form"

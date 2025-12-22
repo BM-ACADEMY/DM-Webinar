@@ -1,46 +1,16 @@
 import { ArrowRightIcon, MailIcon, UserIcon, PhoneIcon, MapPinIcon, CalendarIcon } from "lucide-react";
 import { motion } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
-import Confetti from "react-confetti";
+import toast, { Toaster } from "react-hot-toast"; 
 import SectionTitle from "../../components/SectionTitle";
-
-// Helper hook to get window size for Confetti
-function useWindowSize() {
-    const [windowSize, setWindowSize] = useState({
-        width: undefined,
-        height: undefined,
-    });
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowSize({
-                // Use clientWidth to exclude scrollbar width and prevent X overflow
-                width: document.documentElement.clientWidth,
-                height: window.innerHeight,
-            });
-        }
-        window.addEventListener("resize", handleResize);
-        handleResize(); // Call immediate
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    return windowSize;
-}
+import { useNavigate } from "react-router-dom"; // 1. Import useNavigate
 
 export default function RegistrationSection() {
-    const { width, height } = useWindowSize();
-    const [showConfetti, setShowConfetti] = useState(false);
-
+    const navigate = useNavigate(); // 2. Initialize Hook
+    
     const [form, setForm] = useState({
-        name: "",
-        phone: "",
-        email: "",
-        city: "",
-        status: "",
-        date: "",
-        source: "",
+        name: "", phone: "", email: "", city: "", status: "", date: "", source: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -51,7 +21,7 @@ export default function RegistrationSection() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validation: Phone Number
+        // Validation
         if (form.phone.length !== 10) {
             toast.error("Please enter a valid 10-digit phone number.");
             return;
@@ -61,6 +31,7 @@ export default function RegistrationSection() {
         const loadingToast = toast.loading("Reserving your seat...");
 
         const apiUrl = import.meta.env.VITE_BASE_URL;
+        // Kept your exact URL
         const scriptUrl = "https://script.google.com/macros/s/AKfycbxXoJrKYpM5MZGA0z-JXTYEIcdeocVoKqOsM2-gJ6Wn2YHG4xVK-NGoBuBAyBmDiSid/exec";
 
         let sheetSuccess = false;
@@ -88,17 +59,23 @@ export default function RegistrationSection() {
                 console.error("Email Error:", error);
             }
 
-            // Handle Results
-            toast.dismiss(loadingToast);
+            toast.dismiss(loadingToast); 
 
+            // 3. Logic for Redirection
             if (sheetSuccess && emailSuccess) {
                 toast.success("Registration Successful!");
-                triggerConfetti();
-                resetForm();
+                setForm({ name: "", phone: "", email: "", city: "", status: "", date: "", source: "" });
+                
+                // Redirect to Thank You Page
+                navigate("/thank-you"); 
+
             } else if (sheetSuccess || emailSuccess) {
                 toast.success("Registration Saved.");
-                triggerConfetti();
-                resetForm();
+                setForm({ name: "", phone: "", email: "", city: "", status: "", date: "", source: "" });
+                
+                // Redirect even on partial success (optional)
+                navigate("/thank-you"); 
+
             } else {
                 toast.error("Submission failed. Please check your connection.");
             }
@@ -111,43 +88,10 @@ export default function RegistrationSection() {
         }
     };
 
-    const triggerConfetti = () => {
-        setShowConfetti(true);
-        // Stop confetti after 6 seconds
-        setTimeout(() => setShowConfetti(false), 6000);
-    };
-
-    const resetForm = () => {
-        setForm({
-            name: "",
-            phone: "",
-            email: "",
-            city: "",
-            status: "",
-            date: "",
-            source: "",
-        });
-    };
-
     return (
-        <div className="px-4 sm:px-8  md:px-16 lg:px-24 xl:px-32 py-10 pt-0 relative overflow-x-hidden" id="contact">
-
-            {/* Toast Container */}
+        <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 pt-0 relative overflow-x-hidden" id="contact">
+            
             <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
-
-            {/* Confetti Overlay - Fixed to screen, no overflow, clicks pass through */}
-            {showConfetti && (
-                <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
-                    <Confetti
-                        width={width}
-                        height={height}
-                        recycle={false}
-                        numberOfPieces={500}
-                        gravity={0.2}
-                        style={{ position: 'fixed', top: 0, left: 0 }}
-                    />
-                </div>
-            )}
 
             <SectionTitle
                 text1="Registration Form"
@@ -159,6 +103,7 @@ export default function RegistrationSection() {
                 onSubmit={handleSubmit}
                 className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto text-slate-100 mt-12 w-full"
             >
+                {/* Inputs */}
                 <InputGlass
                     label="Full Name *"
                     placeholder="Enter your full name"
@@ -225,6 +170,7 @@ export default function RegistrationSection() {
                     required
                 />
 
+                {/* Submit Button */}
                 <motion.button
                     type="submit"
                     disabled={isSubmitting}
@@ -246,7 +192,7 @@ export default function RegistrationSection() {
     );
 }
 
-/* ------------------ Glass Input ------------------ */
+/* ------------------ Glass Input Components ------------------ */
 function InputGlass({ label, placeholder, Icon, type = "text", onChange, value, required = false }) {
     return (
         <motion.div
@@ -271,7 +217,6 @@ function InputGlass({ label, placeholder, Icon, type = "text", onChange, value, 
     );
 }
 
-/* ------------------ Glass Select ------------------ */
 function SelectGlass({ label, options, Icon, onChange, value, required = false }) {
     return (
         <motion.div

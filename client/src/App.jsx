@@ -5,6 +5,7 @@ import Aifullstackpage from "./pages/Aifullstackpage";
 import Data_Analyst from "./pages/Data_Analyst";
 import CourseCards from "./pages/CourseCards";
 import AnalyticsTracker from "./utils/AnalyticsTracker";
+import ThankYou from "./sections/Thankingyou";
 
 export default function App() {
     return (
@@ -15,6 +16,7 @@ export default function App() {
                 <Route path="/ai-fullstack-development" element={<Aifullstackpage />} />
                 <Route path="/Data_Analyst" element={<Data_Analyst />} />
                 <Route path="/digital-marketing" element={<HomePage />} />
+                <Route path="/thank-you" element={<ThankYou />} />
             </Routes>
         </>
     );

@@ -5,12 +5,12 @@ const AnalyticsTracker = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // META PIXEL PAGE VIEW
+    // Meta Pixel Page View
     if (window.fbq) {
       window.fbq("track", "PageView");
     }
 
-    // GA4 PAGE VIEW
+    // GA4 Page View
     if (window.gtag) {
       window.gtag("event", "page_view", {
         page_path: location.pathname,
